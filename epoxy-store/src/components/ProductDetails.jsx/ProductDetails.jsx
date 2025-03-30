@@ -5,6 +5,7 @@ import './ProductDetails.css';
 import { CartContext } from "../../context/CartContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import {toast,ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
   const { dispatch } = useContext(CartContext);
@@ -32,6 +33,7 @@ const ProductDetails = () => {
       closeOnClick:true,
       pauseOnHover:true,
       draggable:true,
+      theme: "light" 
     });
     
   };
