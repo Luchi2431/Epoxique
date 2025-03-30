@@ -1,0 +1,49 @@
+.filler-container2 {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 0 2rem;
+    gap: 2rem;
+    background-color:rgb(234, 224, 224);
+}
+
+.filler-item2 {
+    flex: 1;
+    text-align: center;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.filler-item2:hover {
+    transform: translateY(-5px);
+}
+
+.icon2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.filler-item2 h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.filler-item2 p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .filler-container2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filler-item2 {
+        width: 100%;
+        max-width: 400px;
+    }
+}
