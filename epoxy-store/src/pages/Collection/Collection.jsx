@@ -10,8 +10,7 @@ const Collection = () => {
         <HeroProduct />
         <div className="collection-container">
             <div className="collection-header">
-                <h1>Our Collections</h1>
-                <p>Choose from our carefully curated collections</p>
+                <h1>Nasa kolekcija</h1>
             </div>
             <div className="collections-grid">
                 {collections.map((collection) => (
