@@ -5,22 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm install && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "formik": "^2.4.6",
     "postcss": "^8.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
-    "yup": "^1.6.1",
-    "vite": "^6.1.0"
+    "react-toastify": "^11.0.5",
+    "vite": "^6.1.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3", 
-    "@vitejs/plugin-react": "^4.3.4",
+    "@types/react-dom": "^19.0.3",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
