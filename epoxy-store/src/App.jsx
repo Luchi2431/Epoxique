@@ -19,7 +19,7 @@ const Dimensions = lazy(() => import('./pages/Info/Dimensions/Dimensions'));
 const Materials = lazy(() => import('./pages/Info/Materials/Materials'));
 const TableConfigurator = lazy(() => import('./pages/TableConfigurator/TableConfigurator'));
 const ProductDetails = lazy(() => import('./components/ProductDetails.jsx/ProductDetails'));
-
+//AJDE
 const App = () => {
 
   return (
