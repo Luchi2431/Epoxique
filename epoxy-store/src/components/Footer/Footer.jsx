@@ -10,7 +10,7 @@ function Footer() {
                     <ul>
                         <li><Link to="/">Početna</Link></li>
                         <li><Link to="/products">Proizvodi</Link></li>
-                        <li><Link to="/about">O nama</Link></li>
+                        <li><Link to="info/about">O nama</Link></li>
                         <li><Link to="/contact">Kontakt</Link></li>
                     </ul>
                 </div>
