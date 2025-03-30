@@ -36,7 +36,7 @@ const highlightedTables = [
 const HighlightedTables = () => {
     return (
         <section className="highlighted-tables">
-            <h2>Featured Tables</h2>
+            <h2>Izdvojeno iz kolekcje</h2>
             <div className="highlighted-grid">
                 {highlightedTables.map((table) => (
                     <div key={table.id} className="highlight-card">
@@ -46,7 +46,7 @@ const HighlightedTables = () => {
                             <p>{table.description}</p>
                             <p className="price">${table.price}</p>
                             <Link to={`/product/${table.id}`} className="view-button">
-                                View Details
+                                Vidite detalje
                             </Link>
                         </div>
                     </div>
