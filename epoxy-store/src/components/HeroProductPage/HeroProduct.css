@@ -1,0 +1,43 @@
+.hero-product {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background: url('C:\Users\Zdravo\OneDrive\Dokumenti\EpoxyStolovi\epoxy-store\public\EpoxySto3.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(41, 38, 38);
+    text-align: center;
+}
+
+.hero-product-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-product h1 {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.hero-product-content p {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    font-weight: bold;
+    
+}
+
+.hero-product button {
+    padding: 1rem 2rem;
+    margin:2%;
+    font-size: 1rem;
+    color: white;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero-product button:hover {
+    background-color: #444;
+}

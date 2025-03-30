@@ -1,0 +1,68 @@
+.materials-container {
+    padding: 100px 50px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.materials-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.materials-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.materials-section {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.materials-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.materials-section p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.materials-section ul,
+.materials-section ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.materials-section ul li,
+.materials-section ol li {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.materials-section ul {
+    list-style-type: disc;
+}
+
+.materials-section ol {
+    list-style-type: decimal;
+}
+
+@media (max-width: 768px) {
+    .materials-container {
+        padding: 80px 20px 30px;
+    }
+    
+    .materials-content {
+        grid-template-columns: 1fr;
+    }
+}
