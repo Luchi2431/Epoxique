@@ -50,7 +50,7 @@ function Navbar() {
                                 <li><Link to="/info/core" onClick={closeMenu}>Materijali</Link></li>
                             </ul>
                         </li>
-                        <li><Link to="/checkout" onClick={closeMenu}>Checkout</Link></li>
+                        <li><Link to="/checkout" onClick={closeMenu}>Korpa</Link></li>
                     </ul>
                 </div>
             </nav>
