@@ -19,7 +19,6 @@ const Dimensions = lazy(() => import('./pages/Info/Dimensions/Dimensions'));
 const Materials = lazy(() => import('./pages/Info/Materials/Materials'));
 const TableConfigurator = lazy(() => import('./pages/TableConfigurator/TableConfigurator'));
 const ProductDetails = lazy(() => import('./components/ProductDetails.jsx/ProductDetails'));
-//AJDE BRE
 const App = () => {
 
   return (
@@ -29,20 +28,22 @@ const App = () => {
       <ScrollToTop />
       <Navbar/>
       <div className='main-content'>
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/checkout" element={<Checkout/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-        <Route path="/info/about" element={<About/>}/>
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/collection/:id" element={<CollectionItems />} />
-        <Route path="/info/reviews" element={<Reviews />} />
-        <Route path="/info/warranty" element={<Warranty />} />
-        <Route path="/info/dimensions" element={<Dimensions />} />
-        <Route path="/info/core" element={<Materials />} />
-        <Route path="/tableconfigurator" element={<TableConfigurator/>}/>
-        <Route path="/product/:id" element={<ProductDetails/>}/>
-      </Routes>
+      <Suspense fallback={<div className="loading">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/checkout" element={<Checkout/>}/>
+          <Route path="/contact" element={<Contact/>}/>
+          <Route path="/info/about" element={<About/>}/>
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/collection/:id" element={<CollectionItems />} />
+          <Route path="/info/reviews" element={<Reviews />} />
+          <Route path="/info/warranty" element={<Warranty />} />
+          <Route path="/info/dimensions" element={<Dimensions />} />
+          <Route path="/info/core" element={<Materials />} />
+          <Route path="/tableconfigurator" element={<TableConfigurator/>}/>
+          <Route path="/product/:id" element={<ProductDetails/>}/>
+        </Routes>
+      </Suspense>
       </div>
       <Footer />
     </Router>
