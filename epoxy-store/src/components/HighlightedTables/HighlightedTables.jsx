@@ -18,7 +18,7 @@ const highlightedTables = [
         description: "Elegant console table with forest green epoxy inlay"
     },
     {
-        id: 3,
+        id: 13,
         name: "Clear Crystal Coffee Table",
         price: 2200,
         image: "/EpoxySto3.jpg",

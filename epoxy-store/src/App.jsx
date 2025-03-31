@@ -2,13 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import "./App.css";
-import CollectionItems from './pages/Collection/CollectionItems';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import { Suspense, lazy } from 'react'; // Fixed Suspence to Suspense
 import { CartProvider } from "./context/CartContext";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import CollectionItems from "./components/CollectionItems/CollectionItems";
 
 // Lazy imports remain the same
 const Home = lazy(() => import('./pages/Home/Home'));
