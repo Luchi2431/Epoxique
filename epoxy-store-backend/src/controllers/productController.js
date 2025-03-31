@@ -87,6 +87,56 @@ const productController = {
             res.status(500).json({error: err.message});
         }
 
+    },
+
+    updateProduct: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameters
+            const { 
+                name,
+                description,
+                price,
+                stock,
+                category_id,
+                image_url,
+                dimensions
+            } = req.body;
+
+            const query = `
+                UPDATE products
+                 SET 
+                    name = COALESCE($1,name),
+                    description = COALESCE($2,description),
+                    price = COALESCE($3,price),
+                    stock = COALESCE($4,stock),
+                    category_id = COALESCE($5,category_id),
+                    image_url = COALESCE($6, image_url),
+                    dimensions = COALESCE($7, dimensions)
+                 WHERE id = $8
+                 RETURNING *`;
+            
+            const values = [
+                name,
+                description,
+                price,
+                stock || 0,
+                category_id,
+                image_url,
+                dimensions,
+                id
+            ];
+
+            const result = await pool.query(query,values);
+
+            if(result.rows.length === 0) {
+                return res.status(404).json({message: 'Product not found'});
+            }
+
+            res.status(200).json(result.rows[0]); //Return the created product
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
     }
 
 };

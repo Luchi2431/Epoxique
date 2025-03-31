@@ -13,9 +13,7 @@ router.get('/:id',productController.getSingleProduct);
 router.post('/',productController.createProduct);
 
 // Update product
-router.put('/:id', (req, res) => {
-  res.json({ message: `Update product ${req.params.id}` });
-});
+router.put('/:id',productController.updateProduct);
 
 // Delete product
 router.delete('/:id',productController.deleteProduct);
