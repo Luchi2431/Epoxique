@@ -9,6 +9,84 @@ const productController = {
         }catch(err) {
             res.status(500).json({error: err.message});
         }
+    },
+    //Get single product
+    getSingleProduct: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameters
+            const query = 'SELECT * FROM products WHERE id = $1'; //Parameterized query to prevent SQL injection
+            const result = await pool.query(query,[id]);
+
+            if(result.rows.length === 0) {
+                return res.status(404).json({message: 'Product not found'});
+            }
+            res.json(result.rows[0]); //Return the first product found
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    createProduct: async(req,res) => {
+        try {
+            const { 
+                name,
+                description,
+                price,
+                stock,
+                category_id,
+                image_url,
+                dimensions
+            } = req.body;
+
+            const query = `
+                INSERT INTO products
+                 (
+                    name,
+                    description,
+                    price,
+                    stock,
+                    category_id,
+                    image_url,
+                    dimensions
+                )
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)
+                 RETURNING *`;
+            
+            const values = [
+                name,
+                description,
+                price,
+                stock || 0,
+                category_id,
+                image_url,
+                dimensions
+            ];
+
+            const result = await pool.query(query,values);
+            res.status(201).json(result.rows[0]); //Return the created product
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    deleteProduct: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameters
+            const query = 'DELETE FROM products WHERE id = $1 RETURNING *';  //Parameterized query to prevent SQL injection
+            const result = await pool.query(query,[id]);
+
+            if(result.rows.length === 0) {
+                result.status(404).json({message: 'Product not found'});
+            }
+
+            res.status(201).json({message: 'Product deleted successfully'}); //Return the first product found
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+
     }
 
 };

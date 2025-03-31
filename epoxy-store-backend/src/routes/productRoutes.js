@@ -7,14 +7,10 @@ const productController = require('../controllers/productController');
 router.get('/',productController.getAllProducts);
 
 // Get single product
-router.get('/:id', (req, res) => {
-  res.json({ message: `Get product ${req.params.id}` });
-});
+router.get('/:id',productController.getSingleProduct);
 
 // Create product
-router.post('/', (req, res) => {
-  res.json({ message: 'Create product' });
-});
+router.post('/',productController.createProduct);
 
 // Update product
 router.put('/:id', (req, res) => {
@@ -22,8 +18,6 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete product
-router.delete('/:id', (req, res) => {
-  res.json({ message: `Delete product ${req.params.id}` });
-});
+router.delete('/:id',productController.deleteProduct);
 
 module.exports = router;
