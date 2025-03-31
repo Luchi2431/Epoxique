@@ -1,25 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { collections } from "../../data/collections";
-import "./Collection.css";
-import HeroProduct from "../../components/HeroProductPage/HeroProduct";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Collection.css';
+import { useApi } from '../../hooks/useApi';
+import { categoryService } from '../../api/services/categoryService';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const Collection = () => {
+    const { loading, error, data: categories } = useApi(categoryService.getAllCategories);
+
+
+    if (loading) return <LoadingSpinner />;
+    if (error) return <div>Error: {error}</div>;
+    if (!categories || categories.length === 0) return <div>No categories found</div>;
+
     return (
-        <>
-        <HeroProduct />
         <div className="collection-container">
-            <div className="collection-header">
-                <h1>Nasa kolekcija</h1>
-            </div>
-            <div className="collections-grid">
-                {collections.map((collection) => (
-                    <div key={collection.id} className="collection-card">
-                        <img src={collection.image} alt={collection.name} />
-                        <div className="collection-info">
-                            <h2>{collection.name}</h2>
-                            <p>{collection.description}</p>
-                            <Link to={`/collection/${collection.id}`} className="view-collection">
+            <h1>Our Collections</h1>
+            <div className="categories-grid">
+                {categories.map((category) => (
+                    <div key={category.id} className="category-card">
+                        <img 
+                            src={category.image_url || '/default-image.jpeg'} 
+                            alt={category.name} 
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = '/default-image.jpeg';
+                            }}
+                        />
+                        <div className="category-info">
+                            <h2>{category.name}</h2>
+                            <p>{category.description}</p>
+                            <Link to={`/collection/${category.id}`} className="view-category">
                                 View Collection
                             </Link>
                         </div>
@@ -27,7 +38,6 @@ const Collection = () => {
                 ))}
             </div>
         </div>
-        </>
     );
 };
 
