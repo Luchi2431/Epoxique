@@ -1,33 +1,45 @@
-import { createContext,useContext,useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 export const CartContext = createContext();
 
-const cartReducer = (state,action) => {
+const cartReducer = (state, action) => {
     switch(action.type) {
         case 'ADD_TO_CART':
-            // Add new item to cart
-            return [...state,action.payload];
+            const existingItem = state.find(item => item.id === action.payload.id);
+            if(existingItem) {
+                return state.map(item => 
+                    item.id === action.payload.id 
+                        ? {...item, quantity: item.quantity + 1}
+                        : item
+                );
+            }
+            return [...state, {...action.payload, quantity: 1}];
+            
         case 'REMOVE_FROM_CART':
-            // Remove item from cart
-            return state.filter(item=>item.id !==action.payload);
+            return state.filter(item => item.id !== action.payload);
+            
         case 'UPDATE_QUANTITY':
-            // Update item quantity
-            return state.map(item=>item.id === action.payload.id
-                ? {...item,quantity:action.payload.quantity}
-                : item
+            return state.map(item =>
+                item.id === action.payload.id
+                    ? {...item, quantity: action.payload.quantity}
+                    : item
             );
+            
+        case 'CLEAR_CART':
+            return [];
+            
         default:
             return state;    
     }
 };
 
-
 export const CartProvider = ({children}) => {
-    const [cart,dispatch] = useReducer(cartReducer,[]);
+    const [cart, dispatch] = useReducer(cartReducer, []);
+    
+    // Fix: Remove extra parentheses in the value prop
     return (
-        <CartContext.Provider value={({cart,dispatch})}>
+        <CartContext.Provider value={{cart, dispatch}}>
             {children}
         </CartContext.Provider>
     );
 };
-
