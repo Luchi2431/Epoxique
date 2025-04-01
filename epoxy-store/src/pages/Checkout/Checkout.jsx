@@ -1,46 +1,61 @@
-import React, { useState } from 'react';
-import PopularCategories from '../../components/PopularCategories/PopularCategories';
-import "./Checkout.css";
-import * as Yup from 'yup';
-import { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-
-
-const checkoutSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Required'),
-    address: Yup.string().required('Required'),
-    phone: Yup.string()
-    .matches(/^[0-9]+$/, "Must be only digits")
-    .min(10, 'Must be exactly 10 digits')
-    .max(10, 'Must be exactly 10 digits')
-    .required('Required'),
-});
-
+import "./Checkout.css";
+import { toast } from 'react-toastify';
 
 const Checkout = () => {
-    const {cart,dispatch} = useContext(CartContext);
+    const { cart, dispatch } = useContext(CartContext);
     const [termsAccepted, setTermsAccepted] = useState(false);
 
     const updateQuantity = (id, quantity) => {
-        dispatch({ 
-          type: 'UPDATE_QUANTITY', 
-          payload: { id, quantity: Math.max(1, quantity) } 
+        if (quantity < 1) return;
+        dispatch({
+            type: 'UPDATE_QUANTITY',
+            payload: { id, quantity }
         });
     };
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const removeFromCart = (id) => {
+        dispatch({
+            type: 'REMOVE_FROM_CART',
+            payload: id
+        });
+        toast.success('Item removed from cart');
+    };
+
+    const total = cart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
+
+    const handleCheckout = () => {
+        if (!termsAccepted) {
+            toast.error('Please accept the terms first');
+            return;
+        }
+        toast.success('Order placed successfully!');
+        dispatch({ type: 'CLEAR_CART' });
+    };
+
+    if (cart.length === 0) {
+        return (
+            <div className="checkout-wrapper">
+                <div className="empty-cart">
+                    <h2>Your cart is empty</h2>
+                    <p>Add some products to your cart to proceed with checkout</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="checkout-wrapper">
             <div className="checkout-container">
                 <div className="cart-section">
-                    <h2>Korpa</h2>
+                    <h2>Your Cart</h2>
                     {cart.map(item => (
                         <div key={item.id} className="cart-item">
-                            <img src={item.image} alt={item.name} />
+                            <img src={item.image_url} alt={item.name} />
                             <div className="item-details">
                                 <h3>{item.name}</h3>
-                                <p className="price">€{item.price.toFixed(2)}</p>
+                                <p className="price">${Number(item.price).toFixed(2)}</p>
                                 <div className="quantity-control">
                                     <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
                                     <input 
@@ -51,21 +66,24 @@ const Checkout = () => {
                                     />
                                     <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
                                 </div>
+                                <button className="remove-item" onClick={() => removeFromCart(item.id)}>
+                                    Remove
+                                </button>
                             </div>
                         </div>
                     ))}
                     <div className="cart-summary">
                         <div className="summary-row">
-                            <span>Međuzbir:</span>
-                            <span>€{total.toFixed(2)}</span>
+                            <span>Subtotal:</span>
+                            <span>${total.toFixed(2)}</span>
                         </div>
                         <div className="summary-row">
-                            <span>Dostava:</span>
-                            <span>Besplatna</span>
+                            <span>Shipping:</span>
+                            <span>Free</span>
                         </div>
                         <div className="summary-row total">
-                            <span>Ukupno:</span>
-                            <span>€{total.toFixed(2)}</span>
+                            <span>Total:</span>
+                            <span>${total.toFixed(2)}</span>
                         </div>
                     </div>
                 </div>
@@ -79,20 +97,17 @@ const Checkout = () => {
                             onChange={(e) => setTermsAccepted(e.target.checked)}
                         />
                         <label htmlFor="terms">
-                            Pročitao/la sam i prihvatam uslove kupovine
+                            I accept the terms and conditions
                         </label>
                     </div>
                     <button 
                         className={`checkout-button ${!termsAccepted ? 'disabled' : ''}`}
                         disabled={!termsAccepted}
+                        onClick={handleCheckout}
                     >
-                        Nastavi na plaćanje
+                        Proceed to Payment
                     </button>
                 </div>
-            </div>
-            
-            <div className="popular-categories-section">
-                <PopularCategories />
             </div>
         </div>
     );
