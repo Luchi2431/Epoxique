@@ -7,7 +7,10 @@ const categoryRouter = require('./routes/categoryRoutes');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173','https://epoxy-store.vercel.app'],
+    credentials: true,
+}));
 app.use(express.json());
 
 // Routes
