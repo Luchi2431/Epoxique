@@ -1,0 +1,42 @@
+const pool = require('../config/db');
+
+const categoryController = {
+    //Get all categories
+    getAllCategories: async(req,res) => {
+        try {
+            const query = 'SELECT * FROM categories';
+            const result = await pool.query(query);
+            res.json(result.rows);
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    //Get product by Category ID
+    getProductsByCategoryId: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameter
+            const query = 
+            `SELECT p.*,c.name as category_name
+            FROM products p
+            JOIN categories c 
+            ON p.category_id = c.id
+            WHERE c.id = $1`;
+            
+            const result = await pool.query(query,[id]);
+
+            if(result.rows.length === 0) {
+                return res.status(404).json({message: 'No products found in this category'});
+            }
+            res.json(result.rows);
+            
+        }catch(err) {
+            res.status(500).json({error:err.message});
+        }
+    }
+    
+
+
+}
+
+module.exports = categoryController;
