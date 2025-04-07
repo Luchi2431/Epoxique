@@ -10,7 +10,7 @@ git pull origin main
 echo "Installing dependencies..."
 npm install
 
-# Create public directory
+# Setup directories
 echo "Setting up public directory..."
 mkdir -p public/images
 chmod 755 public
@@ -19,12 +19,12 @@ chmod 755 public/images
 # Restart application
 echo "Restarting application..."
 pm2 delete epoxy-backend || true
+sleep 2
 pm2 start ecosystem.config.js
 
 # Show status
 echo "Checking status..."
 sleep 2
 pm2 list
-pm2 logs epoxy-backend --lines 10
 
 echo "Deployment completed!"
