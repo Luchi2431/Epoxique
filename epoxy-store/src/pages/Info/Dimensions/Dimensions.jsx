@@ -1,8 +1,11 @@
 import React from 'react';
 import './Dimensions.css';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
 
 const Dimensions = () => {
     return (
+        <>
+        <Breadcrumbs />
         <div className="dimensions-container">
             <h1>Vodič za Dimenzije</h1>
             <div className="dimensions-content">
@@ -66,6 +69,7 @@ const Dimensions = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

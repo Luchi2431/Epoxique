@@ -4,6 +4,7 @@ import './Collection.css';
 import { useApi } from '../../hooks/useApi';
 import { categoryService } from '../../api/services/categoryService';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const Collection = () => {
     const { loading, error, data: categories } = useApi(categoryService.getAllCategories);
@@ -15,6 +16,7 @@ const Collection = () => {
 
     return (
         <div className="collection-container">
+            <Breadcrumbs />
             <h1>Our Collections</h1>
             <div className="categories-grid">
                 {categories.map((category) => (

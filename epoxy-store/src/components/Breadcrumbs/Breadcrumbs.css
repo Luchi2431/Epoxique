@@ -1,0 +1,28 @@
+.breadcrumbs {
+    padding: 1rem 2rem;
+    background: white;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    color: #999;
+}
+
+.breadcrumbs span:last-child {
+    color: #333;
+    font-weight: 500;
+}

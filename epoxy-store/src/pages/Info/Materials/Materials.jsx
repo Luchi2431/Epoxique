@@ -1,8 +1,11 @@
 import React from 'react';
 import './Materials.css';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
 
 const Materials = () => {
     return (
+        <>
+        <Breadcrumbs />
         <div className="materials-container">
             <h1>Materijali i Izrada</h1>
             <div className="materials-content">
@@ -55,6 +58,7 @@ const Materials = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

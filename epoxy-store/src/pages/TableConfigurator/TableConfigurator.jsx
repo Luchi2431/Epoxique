@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TableConfigurator.css';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const TableConfigurator = () => {
     const [step, setStep] = useState(1);
@@ -188,6 +189,7 @@ const TableConfigurator = () => {
 
     return (
         <div className="configurator-container">
+            <Breadcrumbs />
             <div className="progress-bar">
                 <div className="progress" style={{ width: `${(step / 4) * 100}%` }}></div>
             </div>

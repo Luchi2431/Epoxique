@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import "./Checkout.css";
 import { toast } from 'react-toastify';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const Checkout = () => {
     const { cart, dispatch } = useContext(CartContext);
@@ -36,16 +37,22 @@ const Checkout = () => {
 
     if (cart.length === 0) {
         return (
+            <>
+            <Breadcrumbs />
             <div className="checkout-wrapper">
+                
                 <div className="empty-cart">
                     <h2>Your cart is empty</h2>
                     <p>Add some products to your cart to proceed with checkout</p>
                 </div>
             </div>
+            </>
         );
     }
 
     return (
+        <> 
+        <Breadcrumbs/>
         <div className="checkout-wrapper">
             <div className="checkout-container">
                 <div className="cart-section">
@@ -110,6 +117,7 @@ const Checkout = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

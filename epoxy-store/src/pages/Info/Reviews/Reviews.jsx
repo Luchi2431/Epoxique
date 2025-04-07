@@ -1,8 +1,11 @@
 import React from 'react';
 import './Reviews.css';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
 
 const Reviews = () => {
     return (
+        <>
+        <Breadcrumbs />
         <div className="reviews-container">
             <h1>Recenzije Klijenata</h1>
             <div className="reviews-content">
@@ -31,6 +34,7 @@ const Reviews = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
