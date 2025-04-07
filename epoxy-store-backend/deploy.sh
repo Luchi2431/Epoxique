@@ -16,15 +16,25 @@ mkdir -p public/images
 chmod 755 public
 chmod 755 public/images
 
-# Restart application
-echo "Restarting application..."
+# Stop existing process
+echo "Stopping existing process..."
+pm2 stop epoxy-backend || true
 pm2 delete epoxy-backend || true
-sleep 2
+
+# Wait for process to stop
+echo "Waiting for process to stop..."
+sleep 3
+
+# Start new process
+echo "Starting new process..."
 pm2 start ecosystem.config.js
 
+# Wait for process to start
+echo "Waiting for process to start..."
+sleep 3
+
 # Show status
-echo "Checking status..."
-sleep 2
+echo "Process status:"
 pm2 list
 
 echo "Deployment completed!"

@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-// ...existing code...
+const productRoutes = require('./routes/productRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -10,22 +12,13 @@ app.use(cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
-// ...existing routes...
+// Routes
+app.use('/api/products', productRoutes);
+app.use('/api/categories', categoryRoutes);
 
 // Error handling
-app.use((err, req, res, next) => {
-    console.error('Error:', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-});
+app.use(errorHandler);
 
 const server = app.listen(process.env.PORT || 5000, () => {
     console.log(`Server running on port ${process.env.PORT || 5000}`);
-});
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-    server.close(() => {
-        console.log('Process terminated');
-        process.exit(0);
-    });
 });
