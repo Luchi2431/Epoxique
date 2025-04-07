@@ -1,20 +1,16 @@
 module.exports = {
   apps: [{
-    name: 'epoxy-backend',
-    script: 'src/app.js',
-    env: {
-      NODE_ENV: 'production',
-      PORT: 5000,
-      DB_USER: 'epoxique_luchi',
-      DB_HOST: 'localhost',
-      DB_NAME: 'epoxique',
-      DB_PASSWORD: 'dj.knele2431',
-      DB_PORT: 5432,
-      JWT_SECRET: 'kocintajnipodrum',
-      DATABASE_URL: 'postgresql://epoxique_luchi:dj.knele2431@localhost:5432/epoxique'
-    },
-    watch: true,
+    name: "epoxy-backend",
+    script: "./src/app.js",
+    watch: false,
+    max_memory_restart: "1G",
+    exec_mode: "fork",
     instances: 1,
-    autorestart: true
+    autorestart: true,
+    max_restarts: 10,
+    env: {
+      NODE_ENV: "production",
+      PORT: 5000
+    }
   }]
-}
+};
