@@ -1,8 +1,11 @@
 import React from 'react';
 import './Contact.css';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const Contact = () => {
     return (
+        <>
+         <Breadcrumbs />
         <div className="contact-page">
             <div className="contact-header">
                 <h1>Kontakt</h1>
@@ -43,6 +46,7 @@ const Contact = () => {
                 </form>
             </div>
         </div>
+        </>
     );
 };
 

@@ -4,6 +4,7 @@ import { categoryService } from '../../api/services/categoryService';
 import ProductCard from '../ProductCard/ProductCard';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './CollectionItems.css';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const CollectionItems = () => {
     const { id } = useParams();
@@ -33,6 +34,7 @@ const CollectionItems = () => {
 
     return (
         <div className="collection-container">
+            <Breadcrumbs />
             <h1>{products[0]?.category_name || 'Category Products'}</h1>
             <div className="products-grid">
                 {products.map((product) => (

@@ -1,8 +1,11 @@
 import React from 'react';
 import './About.css';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
 
 const About = () => {
     return (
+        <>
+        <Breadcrumbs />
         <div className="about-container">
             <h1>O Nama</h1>
             <div className="about-content">
@@ -20,6 +23,7 @@ const About = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

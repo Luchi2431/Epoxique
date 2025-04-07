@@ -6,6 +6,7 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { productService } from "../../api/services/productService";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 const ProductDetails = () => {
   const { dispatch } = useContext(CartContext);
@@ -42,6 +43,7 @@ const ProductDetails = () => {
 
   return (
     <>
+      <Breadcrumbs />
       <div className="product-details">
         <div className="product-image">
           <img src={product.image_url} alt={product.name} />

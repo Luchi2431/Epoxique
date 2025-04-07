@@ -1,8 +1,11 @@
 import React from 'react';
 import './Warranty.css';
+import Breadcrumbs from '../../../components/Breadcrumbs/Breadcrumbs';
 
 const Warranty = () => {
     return (
+        <>
+        <Breadcrumbs />
         <div className="warranty-container">
             <h1>Garancija</h1>
             <div className="warranty-content">
@@ -34,6 +37,7 @@ const Warranty = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
