@@ -1,2 +1,0 @@
-# Epoxique
- Moj prvi sajt
