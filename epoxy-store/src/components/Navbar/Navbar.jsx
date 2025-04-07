@@ -1,16 +1,43 @@
-import { useState } from "react";
+import { useState,useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if(dropdownRef.current && !dropdownRef.current.contains(event.target) && !event.target.closest('.dropdown-trigger')) {
+                setIsDropdownOpen(false);
+            }
+        };
+        if(window.innerWidth <= 768) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     const closeMenu = () => {
-        setIsOpen(false);
+        setIsOpen(false);   
+    };
+
+    const toggleDropdown = (e) => {
+        //Prevent toggle on desktop
+        if(window.innerWidth > 768) return;
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleLinkClick = () => {
+        closeMenu();
+        setIsDropdownOpen(false);  
     };
 
     return (
@@ -33,24 +60,24 @@ function Navbar() {
 
                 <div className={`nav-elements ${isOpen ? 'active' : ''}`}>
                     <ul>
-                        <li><Link to="/collection" onClick={closeMenu}>Kolekcija</Link></li>
-                        <li><Link to="/contact" onClick={closeMenu}>Kontakt</Link></li>
-                        <li className="dropdown">
-                            <div className="dropdown-trigger">
+                        <li><Link to="/collection" onClick={handleLinkClick}>Kolekcija</Link></li>
+                        <li><Link to="/contact" onClick={handleLinkClick}>Kontakt</Link></li>
+                        <li className="dropdown" ref={dropdownRef}>
+                            <div className="dropdown-trigger" onClick={toggleDropdown} role="button" tabIndex={0}>
                                 <span>Informacije</span>
-                                <svg className="arrow" width="10" height="6" viewBox="0 0 10 6">
+                                <svg className={`arrow ${isDropdownOpen ? 'rotate' : ''}`} width="10" height="6" viewBox="0 0 10 6">
                                     <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
                                 </svg>
                             </div>
-                            <ul className="dropdown-content">
-                                <li><Link to="/info/about" onClick={closeMenu}>O nama</Link></li>
-                                <li><Link to="/info/reviews" onClick={closeMenu}>Recenzije</Link></li>
-                                <li><Link to="/info/warranty" onClick={closeMenu}>Garancija</Link></li>
-                                <li><Link to="/info/dimensions" onClick={closeMenu}>Vodič za dimenzije</Link></li>
-                                <li><Link to="/info/core" onClick={closeMenu}>Materijali</Link></li>
+                            <ul className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+                                <li><Link to="/info/about" onClick={handleLinkClick}>O nama</Link></li>
+                                <li><Link to="/info/reviews" onClick={handleLinkClick}>Recenzije</Link></li>
+                                <li><Link to="/info/warranty" onClick={handleLinkClick}>Garancija</Link></li>
+                                <li><Link to="/info/dimensions" onClick={handleLinkClick}>Vodič za dimenzije</Link></li>
+                                <li><Link to="/info/core" onClick={handleLinkClick}>Materijali</Link></li>
                             </ul>
                         </li>
-                        <li><Link to="/checkout" onClick={closeMenu}>Korpa</Link></li>
+                        <li><Link to="/checkout" onClick={handleLinkClick}>Korpa</Link></li>
                     </ul>
                 </div>
             </nav>
