@@ -29,8 +29,20 @@ app.get('/', (req, res) => {
 
 // Error handling middleware
 app.use(errorHandler);
+app.use((err, req, res, next) => {
+    console.error('Error:', err.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+// Add graceful shutdown
+process.on('SIGTERM', () => {
+    console.info('SIGTERM signal received.');
+    server.close(() => {
+        console.log('Server closed.');
+        process.exit(0);
+    });
+});
+
+const server = app.listen(process.env.PORT || 5000, () => {
+    console.log('Server is running on port', process.env.PORT || 5000);
 });
