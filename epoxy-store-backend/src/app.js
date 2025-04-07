@@ -3,6 +3,7 @@ const cors = require('cors');
 const productRoutes = require('./routes/productRoutes');
 const errorHandler = require('./middleware/errorHandler');
 const categoryRouter = require('./routes/categoryRoutes');
+const path = require('path');
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
+
+app.use('/images', express.static(path.join(__dirname,'../public/images')));
 
 // Routes
 app.use('/api/products', productRoutes);
