@@ -91,7 +91,7 @@ const Contact = () => {
                     <div className="form-group">
                         <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Poruka *" required></textarea>
                     </div>
-                    <button type="submit" disabled={loading}>
+                    <button type="submit" disabled={loading} onSubmit={handleSubmit}>
                         {loading ? 'Sending...' : 'Posalji upit'}
                     </button>
                 </form>
