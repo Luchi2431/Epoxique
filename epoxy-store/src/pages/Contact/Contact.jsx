@@ -51,7 +51,6 @@ const Contact = () => {
         }
     }
 
-
     return (
         <>
          <Breadcrumbs />
@@ -76,7 +75,7 @@ const Contact = () => {
                         <p>Subota i Nedelja: Zatvoreno</p>
                     </div>
                 </div>
-                <form className="contact-form">
+                <form className="contact-form" onSubmit={handleSubmit}>
                     <div className="form-row">
                         <div className="form-group">
                             <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Ime *" required />
@@ -91,7 +90,7 @@ const Contact = () => {
                     <div className="form-group">
                         <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Poruka *" required></textarea>
                     </div>
-                    <button type="submit" disabled={loading} onSubmit={handleSubmit}>
+                    <button type="submit" disabled={loading}>
                         {loading ? 'Sending...' : 'Posalji upit'}
                     </button>
                 </form>
