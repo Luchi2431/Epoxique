@@ -8,7 +8,10 @@
     margin: 0 auto;
     display: grid;
     gap: 30px;
-    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+        "cart info terms"
+        "cart info terms";
+    grid-template-columns: 2fr 1fr 1fr;
 }
 
 /* Add to Checkout.css */
@@ -32,6 +35,7 @@
 }
 
 .cart-section {
+    grid-area: cart;
     background: white;
     padding: 30px;
     border-radius: 8px;
@@ -103,6 +107,42 @@
     margin-top: 30px;
 }
 
+.customer-info {
+   grid-area: info;
+   background: white;
+   padding: 30px;
+   border-radius: 8px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   height: fit-content;
+   display: flex;
+   flex-direction: column;
+   gap:15px;
+}
+
+.customer-info h3 {
+    font-size: 20px;
+    color:#333;
+    margin-bottom: 20px;
+}
+
+.customer-info input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.customer-info input:focus {
+    outline: none;
+    border-color: #333;
+}
+
+.customer-info input::placeholder {
+    color:#999;
+}
+
 .summary-row {
     display: flex;
     justify-content: space-between;
@@ -121,6 +161,7 @@
 }
 
 .terms-section {
+    grid-area: terms;
     background: white;
     padding: 40px;
     border-radius: 8px;
@@ -164,8 +205,20 @@
     margin-top: 60px;
 }
 
-@media (max-width: 968px) {
+@media (max-width:1200px) {
     .checkout-container {
+        grid-template-areas:
+            "cart cart"
+            "info terms";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .checkout-container {
+        grid-template-areas: "cart" "info" "terms";
         grid-template-columns: 1fr;
     }
     
@@ -181,5 +234,9 @@
     
     .quantity-control {
         justify-content: center;
+    }
+    .customer-info,
+    .terms-section {
+        width: 100%;
     }
 }

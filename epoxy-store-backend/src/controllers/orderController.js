@@ -1,0 +1,61 @@
+const db = require('../config/db');
+
+exports.createOrder = async(req, res) =>  {
+    const { customerInfo, items, totalAmount} = req.body;
+
+    try {
+        await db.query('BEGIN');
+
+        //Create order with separate columns
+        const orderResult = await db.query(
+            `INSERT INTO orders (
+                total_amount,
+                shipping_address,
+                customer_name,
+                customer_phone,
+                customer_email,
+                customer_city,
+                customer_postal_code,
+                status
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+              RETURNING id`,
+              [
+                totalAmount,
+                customerInfo.address,
+                customerInfo.name,
+                customerInfo.phone,
+                customerInfo.email,
+                customerInfo.city,
+                customerInfo.postalCode,
+                'pending'
+              ]
+        );
+        const orderId = orderResult.rows[0].id;
+
+        //CREATE order items
+        for(const item of items) {
+            await db.query(
+                `INSERT INTO order_items (order_id, product_id, quantity, price)
+                 VALUES ($1, $2, $3, $4)`,
+                 [orderId, item.id, item.quantity, item.price]
+            );
+        }
+
+        await db.query('COMMIT');
+
+        res.status(201).json({
+            success: true,
+            orderId: orderId,
+            message: 'Order created successfully'
+        });
+
+    }catch(error) {
+        await db.query('ROLLBACK');
+        console.error('Error creating order:', error);
+        res.status(500).json({ 
+            error: 'Failed to create order',
+            details: error.message 
+        });
+    }
+
+};
