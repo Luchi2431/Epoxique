@@ -8,6 +8,7 @@ export const ENDPOINTS = {
     CATEGORIES: {
         ALL: '/categories',
         PRODUCTS_BY_CATEGORY: (id) => `/categories/${id}/products`,
+        FEATURED: '/categories/featured'
     },
    
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './HighlightedTables.css';
 import { productService } from '../../api/services/productService';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { API_CONFIG } from '../../api/config';
 
 const HighlightedTables = () => {
     const [tables, setTables] = useState();
