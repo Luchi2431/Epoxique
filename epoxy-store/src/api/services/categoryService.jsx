@@ -16,5 +16,13 @@ export const categoryService = {
             throw new Error('Failed to fetch category products');
         }
         return response.json();
+    },
+
+    getFeaturedCategories: async() => {
+        const response = await fetch(`${API_CONFIG.BASE_URL}${ENDPOINTS.CATEGORIES.FEATURED}`);
+        if(!response.ok) {
+            throw new Error("Failed to fetch featured categories");
+        }
+        return response.json();
     }
 };

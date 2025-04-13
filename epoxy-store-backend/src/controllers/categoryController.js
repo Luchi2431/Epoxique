@@ -33,6 +33,23 @@ const categoryController = {
         }catch(err) {
             res.status(500).json({error:err.message});
         }
+    },
+
+    getFeaturedCategories: async(req,res) => {
+        try {
+            const featuredIds = [1,2,3];
+
+            const query = 
+            `SELECT id,name,description,image_url
+             FROM categories
+             WHERE id = ANY($1)
+             ORDER BY ARRAY_POSITION($1, id)`;
+
+             const result = await pool.query(query,[featuredIds]);
+             res.json(result.rows);
+        }catch(err) {
+            res.status(500).json({error:err.message});
+        }
     }
     
 
