@@ -1,50 +1,44 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import './HighlightedTables.css';
-
-const highlightedTables = [
-    {
-        id: 1,
-        name: "Ocean Blue Dining Table",
-        price: 2500,
-        image: "/epoxySto1.jpg",
-        description: "Stunning dining table with ocean blue epoxy river"
-    },
-    {
-        id: 2,
-        name: "Forest Green Console",
-        price: 1800,
-        image: "/epoxySto2.jpg",
-        description: "Elegant console table with forest green epoxy inlay"
-    },
-    {
-        id: 13,
-        name: "Clear Crystal Coffee Table",
-        price: 2200,
-        image: "/EpoxySto3.jpg",
-        description: "Modern coffee table with clear epoxy highlights"
-    },
-    {
-        id: 4,
-        name: "Azure Living Room Table",
-        price: 2800,
-        image: "/epoxySto1.jpg",
-        description: "Luxurious living room table with azure epoxy design"
-    }
-];
+import { productService } from '../../api/services/productService';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const HighlightedTables = () => {
+    const [tables, setTables] = useState();
+    const [loading,setLoading] = useState(true);
+    const [error,setError] = useState(null);
+
+    useEffect(()=> {
+        const fetchHighlightedTables = async() => {
+            try {
+                setLoading(true);
+                const data = await productService.getHighlightedProducts();
+                setTables(data);
+            }catch(err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchHighlightedTables();
+    }, []);
+
+    if(loading) return <LoadingSpinner/>;
+    if(error) return <div>Error loading highligted products </div>;
+    if(!tables.length) return null;
+
     return (
         <section className="highlighted-tables">
-            <h2>Izdvojeno iz kolekcje</h2>
+            <h2>Izdvojeno iz kolekcije</h2>
             <div className="highlighted-grid">
-                {highlightedTables.map((table) => (
-                    <div key={table.id} className="highlight-card">
-                        <img src={table.image} alt={table.name} />
-                        <div className="highlight-content">
+                {tables.map((table) => (
+                    <div key={table.id} className='highlight-card'>
+                        <img src={table.image_url} alt={table.name} />
+                        <div className='highlight-content'>
                             <h3>{table.name}</h3>
                             <p>{table.description}</p>
-                            <p className="price">${table.price}</p>
+                            <p className='price'>${table.price}</p>
                             <Link to={`/product/${table.id}`} className="view-button">
                                 Vidite detalje
                             </Link>

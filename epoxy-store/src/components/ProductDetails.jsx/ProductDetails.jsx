@@ -34,7 +34,17 @@ const ProductDetails = () => {
 
   const handleAddToCart = () => {
     dispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity: 1 } });
-    toast.success("Proizvod je dodat u korpu!");
+    setTimeout(() => {
+      toast.success("Proizvod je dodat u korpu!", {
+        position:"top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        toastId: 'add-to-cart'
+      });
+    }, 0);
   };
 
   if (loading) return <LoadingSpinner />;
@@ -68,7 +78,6 @@ const ProductDetails = () => {
           </button>
         </div>
       </div>
-      <ToastContainer />
     </>
   );
 };

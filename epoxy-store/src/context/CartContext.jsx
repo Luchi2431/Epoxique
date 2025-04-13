@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer } from "react";
 
 export const CartContext = createContext();
 
@@ -51,14 +51,7 @@ export const CartProvider = ({children}) => {
         const localCart = localStorage.getItem('cart');
         return localCart ? JSON.parse(localCart) : [];
     });
-
-    // Sync cart with localStorange on changes
-
-    useEffect(() => {
-        localStorage.setItem('cart',JSON.stringify(cart));
-    },[cart]);
     
-    // Fix: Remove extra parentheses in the value prop
     return (
         <CartContext.Provider value={{cart, dispatch}}>
             {children}
