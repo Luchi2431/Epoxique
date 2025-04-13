@@ -7,6 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { productService } from "../../api/services/productService";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import Image from "../Image/Image";
 
 const ProductDetails = () => {
   const { dispatch } = useContext(CartContext);
@@ -56,7 +57,7 @@ const ProductDetails = () => {
       <Breadcrumbs />
       <div className="product-details">
         <div className="product-image">
-          <img src={product.image_url} alt={product.name} />
+          <Image src={product.image_url} alt={product.name} size="large" className="detail-image"/>
         </div>
         <div className="product-info">
           <h1>{product.name}</h1>

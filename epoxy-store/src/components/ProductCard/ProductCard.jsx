@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import "./ProductCard.css";
+import Image from "../Image/Image";
 
 const ProductCard = ({ product }) => {
     return (
         <div className="product-card">
-            <img 
-                src={product.image || '/default-image.jpeg'} 
+            <Image
+                src={product.image_url}
                 alt={product.name}
-                onError={(e) => {
-                    e.target.src = '/default-image.jpeg';
-                }}
-            />
+                size="medium"
+                className="product-thumbnail"
+            ></Image>
             <h2>{product.name}</h2>
             <p>${product.price}</p>
             <Link to={`/product/${product.id}`}>
