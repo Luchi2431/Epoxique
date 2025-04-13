@@ -4,6 +4,7 @@ import './HighlightedTables.css';
 import { productService } from '../../api/services/productService';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { API_CONFIG } from '../../api/config';
+import Image from '../Image/Image';
 
 const HighlightedTables = () => {
     const [tables, setTables] = useState();
@@ -35,7 +36,7 @@ const HighlightedTables = () => {
             <div className="highlighted-grid">
                 {tables.map((table) => (
                     <div key={table.id} className='highlight-card'>
-                        <img src={table.image_url} alt={table.name} />
+                        <Image src={table.image_url} alt={table.name} size="large" className="highlight-image" />
                         <div className='highlight-content'>
                             <h3>{table.name}</h3>
                             <p>{table.description}</p>

@@ -3,6 +3,7 @@ import './PopularCategories.css'; // Assuming you will add some styles here
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { categoryService } from '../../api/services/categoryService';
+import Image from '../Image/Image';
 
 const PopularCategories = () => {
     const navigate = useNavigate();
@@ -39,10 +40,7 @@ const PopularCategories = () => {
                         className='category'
                         onClick={() => navigate(`/collection/${category.id}`)}
                     >
-                        <img
-                            src={category.image_url}
-                            alt={category.name}
-                        ></img>
+                        <Image src={category.image_url} alt={category.name} size="large" className="category-image" />
                         <p>{category.name}</p>
                     </div>
                 ))}
