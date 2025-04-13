@@ -16,6 +16,14 @@ export const productService = {
             throw new Error('Product not found');
         }
         return response.json();
+    },
+
+    getHighlightedProducts: async() => {
+        const response = await fetch(`${API_CONFIG.BASE_URL}${ENDPOINTS.PRODUCTS.HIGHLIGHTED}`);
+        if(!response.ok) {
+            throw new Error('Failed to fetch highlighted products');
+        }
+        return response.json();
     }
 
 

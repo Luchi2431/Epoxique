@@ -137,6 +137,15 @@ const productController = {
         }catch(err) {
             res.status(500).json({error: err.message});
         }
+    },
+
+    getHighlightedProducts: async(req,res) => {
+        try {
+            const result = await pool.query(`SELECT * FROM products ORDER BY RANDOM() LIMIT 4`);
+            res.json(result.rows);
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
     }
 
 };

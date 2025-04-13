@@ -49,7 +49,7 @@ const App = () => {
             </Suspense>
           </div>
           <Footer />
-          <ToastContainer />
+          <ToastContainer limit={3} />
         </Router>
       </CartProvider>
     </ErrorBoundary>

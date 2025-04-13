@@ -3,6 +3,9 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const productController = require('../controllers/productController');
 
+//Highlighted products
+router.get('/highlighted',productController.getHighlightedProducts);
+
 // Get all products
 router.get('/',productController.getAllProducts);
 
