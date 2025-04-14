@@ -11,7 +11,7 @@ const app = express();
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use('/images', express.static(path.join(__dirname, '../public/images')));
+app.use('/api/images', express.static(path.join(__dirname, '../public/images/products')));
 
 // Routes
 app.use('/api/products', productRoutes);

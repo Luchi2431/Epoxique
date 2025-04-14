@@ -26,10 +26,12 @@ const HighlightedTables = () => {
         fetchHighlightedTables();
     }, []);
 
+   
+
     if(loading) return <LoadingSpinner/>;
     if(error) return <div>Error loading highligted products </div>;
     if(!tables.length) return null;
-
+   
     return (
         <section className="highlighted-tables">
             <h2>Izdvojeno iz kolekcije</h2>
