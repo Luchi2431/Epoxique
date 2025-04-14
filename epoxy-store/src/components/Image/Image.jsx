@@ -22,6 +22,7 @@ const Image = memo(({src, alt, className, size = 'medium'}) => {
                 loading="lazy"
                 onLoad={() => setIsLoading(false)}
                 onError={() => {
+                    console.log('Image failed to load:', imageUrl);
                     setHasError(true);
                     setIsLoading(false);
                 }}
