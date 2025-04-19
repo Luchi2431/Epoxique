@@ -4,6 +4,7 @@ import "./Checkout.css";
 import { toast } from 'react-toastify';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import emailjs from '@emailjs/browser';
+import Image from '../../components/Image/Image';
 
 
 const Checkout = () => {
@@ -135,7 +136,7 @@ const Checkout = () => {
                     <h2>Your Cart</h2>
                     {cart.map(item => (
                         <div key={item.id} className="cart-item">
-                            <img src={item.image_url} alt={item.name} />
+                            <Image src={item.image_url} alt={item.name} size="medium" />
                             <div className="item-details">
                                 <h3>{item.name}</h3>
                                 <p className="price">${Number(item.price).toFixed(2)}</p>
