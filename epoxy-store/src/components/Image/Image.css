@@ -6,10 +6,10 @@
 
 .image-wrapper.small {aspect-ratio: 1;width: 100px;}
 .image-wrapper.medium {aspect-ratio: 1;width: 200px;}
-.image-wrapper.large {aspect-ratio: 1; width: 300px;}
+.image-wrapper.large {aspect-ratio: 1; width: 400px;}
 
 .image-skeleton {
-    position: absolute;
+    position:absolute;
     top: 0;
     left: 0;
     right: 0;
