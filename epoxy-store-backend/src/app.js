@@ -11,7 +11,7 @@ const app = express();
 // Middlewares
 app.use(cors({
     origin: [
-        'https://epoxique.vercel.app',
+        'https://www.epoxique.rs',
         'https://epoxique.rs',
         'http://localhost:5173',
     ],
