@@ -1,5 +1,7 @@
 const {Pool} = require('pg');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
+
 
 const pool = new Pool ({
     user: process.env.DB_USER,
@@ -11,19 +13,8 @@ const pool = new Pool ({
     connectionTimeoutMillis: 5000
 });
 
-//test connection with async/await for better error handling
-
-const testConnection = async() => {
-    try {
-        const client = await pool.connect();
-        console.log("Uspesna konekcija sa bazom");
-        client.release();
-
-    }catch(err) {
-        console.log("Database connection error",err.message);
-    }
-}
-
-testConnection();
+pool.connect()
+    .then(() => console.log('Successfully connected to database'))
+    .catch(err => console.error('Database connection error:', err));
 
 module.exports = pool;
