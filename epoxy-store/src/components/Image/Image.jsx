@@ -9,7 +9,7 @@ const Image = memo(({src, alt, className, size = 'medium'}) => {
     const imageUrl = src?.startsWith('http')
         ? src
         : src?.startsWith('/images')
-        ? `https://epoxique.rs${src}`
+        ? `https://api.epoxique.rs${src}`
         : `/fallback-image.jpg`;
 
     return (
