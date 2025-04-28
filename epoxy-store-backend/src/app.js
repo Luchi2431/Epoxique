@@ -12,7 +12,8 @@ const app = express();
 app.use(cors({
     origin: [
         'https://epoxique.vercel.app',
-        'http://localhost:5173'
+        'https://epoxique.rs',
+        'http://localhost:5173',
     ],
     credentials: true,
     methods: ['GET','POST','PUT','DELETE','OPTIONS']
