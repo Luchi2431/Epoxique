@@ -26,6 +26,8 @@
     transition: opacity 0.3s ease;
 }
 
+.image-wrapper.tiny { aspect-ratio: 1; width: 90px; }
+
 .product-image.loading {
     opacity: 0;
 }
