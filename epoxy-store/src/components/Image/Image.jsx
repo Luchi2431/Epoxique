@@ -9,8 +9,8 @@ const Image = memo(({src, alt, className, size = 'medium'}) => {
     const imageUrl = src?.startsWith('http')
         ? src
         : src?.startsWith('/images')
-        ? `https://api.epoxique.rs${src}`
-        : `/fallback-image.jpg`;
+        ? `${API_CONFIG.BASE_URL}${src}`
+        : src;
 
     return (
         <div className={`image-wrapper ${size} ${className || ''}`}>

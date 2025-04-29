@@ -19,11 +19,17 @@
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     color: #333;
     text-decoration: none;
     z-index: 2;
+}
+
+.logo:hover,
+.logo:focus {
+    color: #9a9999;           /* Keep the color the same on hover/focus/active */
+    text-decoration: none; /* Prevent underline or other effects */
 }
 
 .nav-elements ul {
@@ -33,12 +39,13 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    font-size: 1.5rem;
 }
 
 .nav-elements a {
     color: #333;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1.5rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
@@ -53,6 +60,7 @@
     padding: 0.5rem 0;
 }
 
+
 .dropdown-trigger {
     display: flex;
     align-items: center;
@@ -62,7 +70,7 @@
 
 .dropdown span {
     color: #333;
-    font-size: 0.95rem;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 

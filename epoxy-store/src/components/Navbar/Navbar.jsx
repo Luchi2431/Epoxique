@@ -64,7 +64,7 @@ function Navbar() {
                         <li><Link to="/contact" onClick={handleLinkClick}>Kontakt</Link></li>
                         <li className="dropdown" ref={dropdownRef}>
                             <div className="dropdown-trigger" onClick={toggleDropdown} role="button" tabIndex={0}>
-                                <span>Informacije</span>
+                                <span className="span">Informacije</span>
                                 <svg className={`arrow ${isDropdownOpen ? 'rotate' : ''}`} width="10" height="6" viewBox="0 0 10 6">
                                     <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
                                 </svg>
