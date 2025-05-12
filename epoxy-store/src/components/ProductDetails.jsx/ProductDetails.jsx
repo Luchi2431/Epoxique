@@ -18,6 +18,7 @@ const ProductDetails = () => {
   const [selectedDimension, setSelectedDimension] = useState("");
   const [customDimension, setCustomDimension] = useState("");
   const [useCustom, setUseCustom] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -67,7 +68,32 @@ const ProductDetails = () => {
       <Breadcrumbs />
       <div className="product-details-container">
         <div className="product-gallery">
-          <Image src={product.image_url} alt={product.name} size="large" className="main-image"/>
+          {/* Main Image */}
+          <div className="main-image-container">
+            <Image 
+              src={product.images?.[selectedImage]?.image_url || product.image_url} 
+              alt={product.name} 
+              size="large" 
+              className="main-image"
+            />
+          </div>
+          
+          {/* Thumbnail Images */}
+          <div className="thumbnail-container">
+            {product.images?.map((image, index) => (
+              <div 
+                key={image.id} 
+                className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
+                onClick={() => setSelectedImage(index)}
+              >
+                <Image 
+                  src={image.image_url} 
+                  alt={`${product.name} view ${index + 1}`} 
+                  size="small" 
+                />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="product-summary">
           <h1 className="product-title">{product.name}</h1>

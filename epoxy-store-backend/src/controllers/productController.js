@@ -14,15 +14,24 @@ const productController = {
     getSingleProduct: async(req,res) => {
         try {
             const {id} = req.params; //Get id from request parameters
-            const query = 'SELECT * FROM products WHERE id = $1'; //Parameterized query to prevent SQL injection
-            const result = await pool.query(query,[id]);
+            const productQuery = 'SELECT * FROM products WHERE id = $1'; //Parameterized query to prevent SQL injection
+            const productResult = await pool.query(productQuery,[id]);
 
-            if(result.rows.length === 0) {
+            if(productResult.rows.length === 0) {
                 return res.status(404).json({message: 'Product not found'});
             }
-            res.json(result.rows[0]); //Return the first product found
+
+            const imagesQuery = 'SELECT * FROM product_images WHERE product_id = $1 ORDER BY sort_order';
+            const imagesResult = await pool.query(imagesQuery,[id]);
+            
+            const product = {
+                ...productResult.rows[0],
+                images: imagesResult.rows || []
+            };
+            res.json(product);
 
         }catch(err) {
+            console.error('Error:', err);
             res.status(500).json({error: err.message});
         }
     },
