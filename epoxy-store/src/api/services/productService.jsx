@@ -11,11 +11,19 @@ export const productService = {
     },
 
     getProductById: async(id) => {
-        const response = await fetch(`${API_CONFIG.BASE_URL}${ENDPOINTS.PRODUCTS.BY_ID(id)}`);
-        if(!response.ok) {
-            throw new Error('Product not found');
+        try {
+            const response = await fetch(`${API_CONFIG.BASE_URL}${ENDPOINTS.PRODUCTS.BY_ID(id)}`);
+
+            if(!response.ok) {
+                throw new Error('Product not found');
+            }
+            const data = await response.json();
+            return data;
+            
+        } catch(error) {
+            console.error('Error fetching product:', error);
+            throw error;
         }
-        return response.json();
     },
 
     getHighlightedProducts: async() => {

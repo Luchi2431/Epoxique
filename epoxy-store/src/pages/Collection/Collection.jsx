@@ -12,13 +12,13 @@ const Collection = () => {
 
 
     if (loading) return <LoadingSpinner />;
-    if (error) return <div>Error: {error}</div>;
-    if (!categories || categories.length === 0) return <div>No categories found</div>;
+    if (error) return <div>Greska: {error}</div>;
+    if (!categories || categories.length === 0) return <div>Nijedna kategorija nije nadjena</div>;
 
     return (
         <div className="collection-container">
             <Breadcrumbs />
-            <h1>Our Collections</h1>
+            <h1>Nasa kolekcija</h1>
             <div className="collections-grid">
                 {categories.map((category) => (
                     <div key={category.id} className="collection-card">
@@ -27,7 +27,7 @@ const Collection = () => {
                             <h2>{category.name}</h2>
                             <p>{category.description}</p>
                             <Link to={`/collection/${category.id}`} className="view-collection">
-                                View Collection
+                                Vidi kolekciju
                             </Link>
                         </div>
                     </div>
