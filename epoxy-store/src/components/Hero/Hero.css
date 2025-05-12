@@ -93,3 +93,38 @@
     font-size: 1.8rem;
     color: rgb(215, 212, 212);
 }
+
+@media (max-width:768px) {
+    .hero {
+        height: 60vh;
+        background-size: 200%;
+        background-position: center 25%;
+        padding: 0 10px;
+    }
+
+    .hero-content {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .slikica {
+        height: 250px;
+        margin-top: 10px;
+    }
+
+    .podnaslov {
+        font-size: 1.5rem;
+    }
+
+    .manjipodnaslov {
+        font-size: 1rem;
+    }
+    .CustomOrderBtn,
+    .CollectionBtn,
+    .hero button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        margin: 0.5rem 0.5rem 1.5rem 0.5rem;
+        border-radius: 20px;
+    }
+}
