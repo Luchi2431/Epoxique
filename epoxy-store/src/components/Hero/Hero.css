@@ -1,7 +1,7 @@
 .hero {
     position: relative;
     width: 100%;
-    height: 70vh;
+    height: 85vh;
     background: url('/naslovna.jpg') no-repeat center 15%;
     background-size: 130%;
     display: flex;
@@ -96,7 +96,7 @@
 
 @media (max-width:768px) {
     .hero {
-        height: 60vh;
+        height: 80vh;
         background-size: 200%;
         background-position: center 25%;
         padding: 0 10px;
