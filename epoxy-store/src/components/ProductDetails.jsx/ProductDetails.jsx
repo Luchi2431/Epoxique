@@ -9,6 +9,21 @@ import { productService } from "../../api/services/productService";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Image from "../Image/Image";
 
+const formatDimensions = (dimensions) => {
+  if (!dimensions) return 'N/A';
+
+  try {
+    const dim = typeof dimensions === 'string' ? JSON.parse(dimensions) : dimensions;
+    if(dim.length && dim.width && dim.height) {
+        return `${dim.length}x${dim.width}x${dim.height} cm`;
+    }
+    return dimensions;
+  } catch (e) {
+    return dimensions;
+  }
+};
+
+
 const ProductDetails = () => {
   const { dispatch } = useContext(CartContext);
   const { id } = useParams();
@@ -102,10 +117,16 @@ const ProductDetails = () => {
           <div className="dimension-selector">
             <h3>Izaberi dimenzije</h3>
             {!useCustom && (
-              <select value={selectedDimension} onChange={(e)=>setSelectedDimension(e.target.value)}>
-                {dimensionOptions.map((dim,index) => (
-                  <option key={index} value={typeof dim==="string" ? dim: JSON.stringify(dim)}>
-                    {typeof dim === "string" ? dim : JSON.stringify(dim)}
+              <select 
+                value={selectedDimension} 
+                onChange={(e) => setSelectedDimension(e.target.value)}
+              >
+                {dimensionOptions.map((dim, index) => (
+                  <option 
+                    key={index} 
+                    value={typeof dim === "string" ? dim : JSON.stringify(dim)}
+                  >
+                    {formatDimensions(dim)}
                   </option>
                 ))}
               </select>
@@ -136,9 +157,7 @@ const ProductDetails = () => {
           <div className="product-specs">
             <h2>Specifikacije</h2>
             <ul>
-              <li>Dimenzije: {selectedDimension || "Po narudzbini"}</li>
-              <li>Material: Wood and epoxy resin</li>
-              <li>Finalna obrada: High gloss</li>
+              <li>Dimenzije: {useCustom ? customDimension : formatDimensions(selectedDimension)}</li>
             </ul>
           </div>
         </div>
