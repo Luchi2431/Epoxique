@@ -5,28 +5,45 @@ const Breadcrumbs = () => {
     const Location = useLocation();
     const pathnames = Location.pathname.split("/").filter(x=>x);
 
+    // Add Serbian translations for path names
+    const translations = {
+        'home': 'Početna',
+        'collection': 'Kolekcija',
+        'contact': 'Kontakt',
+        'cart': 'Korpa',
+        'info': 'Informacije',
+        'about': 'O nama',
+        'reviews': 'Recenzije',
+        'warranty': 'Garancija',
+        'dimensions': 'Dimenzije',
+        'core': 'Materijali',
+        'product': 'Proizvod',
+        'checkout': 'Plaćanje',
+        'configurator': 'Konfigurator'
+    };
+
     return (
         <div className="breadcrumbs">
-            <Link to="/">Home</Link>
+            <Link to="/">{translations['home']}</Link>
             {pathnames.map((name,index) => {
                 const routeTo = `/${pathnames.slice(0,index+1).join("/")}`;
                 const isLast = index === pathnames.length - 1;
-                //Format the name to be more readable
-                const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
+                
+                // Get Serbian translation or use capitalized original if translation not found
+                const translatedName = translations[name.toLowerCase()] || 
+                    name.charAt(0).toUpperCase() + name.slice(1);
 
                 return isLast ? (
-                    <span key={name}>/ {formattedName}</span>
+                    <span key={name}>/ {translatedName}</span>
                 ) : (
                     <span key={name}>
-                        { ' /'}
-                        <Link to={routeTo}>{formattedName}</Link>
+                        {' /'}
+                        <Link to={routeTo}>{translatedName}</Link>
                     </span>
                 );
             })}
-
         </div>
     );
-
 };
 
 export default Breadcrumbs;

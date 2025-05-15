@@ -6,24 +6,19 @@ const Filler1 = () => {
         <div className="filler-container">
             <div className="filler-item">
                 <div className="icon">🔧</div>
-                <h3>Configure</h3>
-                <p>Configure your table according to your personal preferences & in your desired custom dimensions.</p>
+                <h3>Konfiguracija</h3>
+                <p>Konfigurišite vaš sto prema ličnim željama i u željenim dimenzijama po meri.</p>
             </div>
             <div className="filler-item">
                 <div className="icon">🌳</div>
-                <h3>Explore</h3>
-                <p>Explore our wide selection of precious woods (oak, olive, walnut, elm, chestnut, and more).</p>
+                <h3>Istražite</h3>
+                <p>Istražite našu široku ponudu plemenitog drveta (hrast, maslina, orah, brest, kesten i drugo).</p>
             </div>
             <div className="filler-item">
                 <div className="icon">🛡️</div>
-                <h3>Quality</h3>
-                <p>Our epoxy resin is non-toxic and comes with a 10-year manufacturer’s warranty against yellowing.</p>
-            </div>
-            <div className="filler-item">
-                <div className="icon">🖼️</div>
-                <h3>Visualize</h3>
-                <p>You can place your virtual table in the desired location within the room and visualize it in 3D before making a purchase.</p>
-            </div>
+                <h3>Kvalitet</h3>
+                <p>Naša epoksi smola je netoksična i dolazi sa 10-godišnjom garancijom proizvođača protiv žućenja.</p>
+            </div>  
         </div>
     );
 };

@@ -26,8 +26,7 @@
     z-index: 2;
 }
 
-.logo:hover,
-.logo:focus {
+.logo:hover{
     color: #9a9999;           /* Keep the color the same on hover/focus/active */
     text-decoration: none; /* Prevent underline or other effects */
 }

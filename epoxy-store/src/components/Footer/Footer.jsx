@@ -9,9 +9,9 @@ function Footer() {
                     <h3>Navigacija</h3>
                     <ul>
                         <li><Link to="/">Početna</Link></li>
-                        <li><Link to="/products">Proizvodi</Link></li>
-                        <li><Link to="info/about">O nama</Link></li>
+                        <li><Link to="/collection">Kolekcija</Link></li>
                         <li><Link to="/contact">Kontakt</Link></li>
+                        <li><Link to="/cart">Korpa</Link></li>
                     </ul>
                 </div>
 

@@ -31,10 +31,10 @@ const Dimensions = () => {
                     <h2>Klub Stolovi</h2>
                     <ul>
                         <li>
-                            <strong>Standardna visina:</strong> 45cm
+                            <strong>Standardna visina:</strong> 40-50cm
                         </li>
                         <li>
-                            <strong>Preporučena širina:</strong> 60-80cm
+                            <strong>Preporučena širina:</strong> 80-140cm
                         </li>
                         <li>
                             <strong>Standardna dužina:</strong> 120-140cm

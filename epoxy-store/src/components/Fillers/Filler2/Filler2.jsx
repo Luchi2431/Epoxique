@@ -6,19 +6,15 @@ const Filler2 = () => {
         <div className="filler-container2">
             <div className="filler-item2">
                 <div className="icon2">🔧</div>
-                <h3>2-year warranty</h3>
+                <h3>Garancija</h3>
             </div>
             <div className="filler-item2">
                 <div className="icon2">🌳</div>
-                <h3>Secure payment</h3>
-            </div>
-            <div className="filler-item2">
-                <div className="icon2">🛡️</div>
-                <h3>Free returns: 14 days</h3>
+                <h3>Bezbedno placanje</h3>
             </div>
             <div className="filler-item2">
                 <div className="icon2">🖼️</div>
-                <h3>Delivery by appointment</h3>
+                <h3>Besplatna dostava</h3>
             </div>
         </div>
     );

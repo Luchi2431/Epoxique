@@ -1,5 +1,5 @@
 .warranty-container {
-    padding: 100px 50px 40px;
+    padding: 30px 50px 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -13,8 +13,8 @@
 
 .warranty-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 50px;
 }
 
 .warranty-section {
