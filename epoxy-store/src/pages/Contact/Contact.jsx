@@ -69,10 +69,9 @@ const Contact = () => {
                         <h3>Email</h3>
                         <p>info@epoxystolovi.rs</p>
                     </div>
-                    <div className="info-section">
-                        <h3>Radno vreme</h3>
-                        <p>Od Ponedeljka do Petka: 9am - 5pm</p>
-                        <p>Subota i Nedelja: Zatvoreno</p>
+                    <div className='info-section'>
+                        <h3>Instagram/Facebook</h3>
+                        <p>epoxique.rs</p>
                     </div>
                 </div>
                 <form className="contact-form" onSubmit={handleSubmit}>

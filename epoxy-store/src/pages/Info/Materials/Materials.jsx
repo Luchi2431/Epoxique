@@ -11,14 +11,20 @@ const Materials = () => {
             <div className="materials-content">
                 <div className="materials-section">
                     <h2>Drvo</h2>
-                    <p>Koristimo samo pažljivo odabrano i sušeno drvo najvišeg kvaliteta:</p>
+                    <h3>Tvrdo drvo (preporučeno):</h3>
                     <ul>
-                        <li>Hrast</li>
-                        <li>Orah</li>
-                        <li>Javor</li>
-                        <li>Bagrem</li>
+                        <li><b>Hrast</b> - izuzetno čvrst i dugotrajan, sa prepoznatljivim godovima.</li>
+                        <li><b>Orah</b> - poznat po bogatoj boji i teksturi, često se koristi za luksuzne stolove.</li>
+                        <li><b>Jasen</b> - svetlije boje, ima dobru otpornost.</li>
+                        <li><b>Tresnja</b> - toplih tonova, stari s vremenom i dobija bogatiju boju.</li>
+                        <li><b>Maslina</b> - egzotična, sa izraženim šarama</li>
                     </ul>
-                    <p>Svaki komad drveta se suši prirodno i u sušarama da bi se osigurala stabilnost.</p>
+                    <h3>Mekano drvo:</h3>
+                    <p>Mekano drvo zahteva dodatnu obradu, poput stabilizacije smolom, kako bi se povećala njegova čvrstoća i trajnost.</p>
+                    <ul>
+                        <li><b>Bor</b> - zahteva stabilizaciju zbog mekoće</li>
+                        <li><b>Jela</b> - koristi se za rustične dizajne</li>
+                    </ul>
                 </div>
 
                 <div className="materials-section">
