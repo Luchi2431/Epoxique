@@ -35,17 +35,12 @@ const CollectionItems = () => {
     return (
         <div className="collection-container">
             <Breadcrumbs />
-            <h1>{products[0]?.category_name || 'Category Products'}</h1>
+            <h1>{products[0]?.category_name || 'Kolekcija'}</h1>
             <div className="products-grid">
                 {products.map((product) => (
                     <ProductCard 
                         key={product.id} 
-                        product={{
-                            id: product.id,
-                            name: product.name,
-                            price: product.price,
-                            image: product.image_url
-                        }}
+                        product={product}
                     />
                 ))}
             </div>
