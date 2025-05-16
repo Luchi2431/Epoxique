@@ -98,6 +98,7 @@
 
 .cart-summary {
     margin-top: 30px;
+    font-weight: bold;
 }
 
 .customer-info {
@@ -134,23 +135,6 @@
 
 .customer-info input::placeholder {
     color:#999;
-}
-
-.summary-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #666;
-}
-
-.summary-row.total {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    border-top: 1px solid #eee;
-    padding-top: 15px;
-    margin-top: 15px;
 }
 
 .terms-section {
