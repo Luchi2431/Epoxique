@@ -68,7 +68,7 @@ const Checkout = () => {
                         quantity: item.quantity,
                         price: item.price
                     })),
-                    totalAmount: total + 500
+                    totalAmount: total 
                 })
             });
             if(!response.ok) {
@@ -139,6 +139,8 @@ const Checkout = () => {
                             <Image src={item.image_url} alt={item.name} size="medium" />
                             <div className="item-details">
                                 <h3>{item.name}</h3>
+                                <p>{item.description}</p>
+                                <p>Dimenzije: {item.dimensions.length}x{item.dimensions.width}x{item.dimensions.height}cm</p>
                                 <p className="price">${Number(item.price).toFixed(2)}</p>
                                 <div className="quantity-control">
                                     <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
@@ -157,18 +159,8 @@ const Checkout = () => {
                         </div>
                     ))}
                     <div className="cart-summary">
-                        <div className="summary-row">
                             <span>Ukupno:</span>
-                            <span>${total.toFixed(2)}</span>
-                        </div>
-                        <div className="summary-row">
-                            <span>Postarina:</span>
-                            <span>500</span>
-                        </div>
-                        <div className="summary-row total">
-                            <span>Ukupno:</span>
-                            <span>${total.toFixed(2)}</span>
-                        </div>
+                            <span>${total.toFixed(2)}</span>  
                     </div>
                 </div>
 
