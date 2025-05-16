@@ -24,7 +24,6 @@
 
   .main-content {
     flex-grow: 1;
-    padding-bottom:60px;
     overflow-x: hidden;
     padding-top:80px;
   }

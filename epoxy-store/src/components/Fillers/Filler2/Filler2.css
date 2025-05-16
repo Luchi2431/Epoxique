@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     max-width: 100%;
-    padding: 0 2rem;
     gap: 2rem;
     background-color:rgb(236, 234, 234);
 }
