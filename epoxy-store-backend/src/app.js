@@ -21,7 +21,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type','Authorization']
 }));
 app.use(express.json());
-app.use('/api/images', express.static(path.join(__dirname, '../public/images/products')));
+app.use('/api', express.static(path.join(__dirname, '../public/images/products')));
 
 // Routes
 app.use('/api/products', productRoutes);
