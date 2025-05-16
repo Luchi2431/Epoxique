@@ -4,14 +4,14 @@
 }
 
 .checkout-container {
-    max-width: 1300px;
+    max-width: 1500px;
     margin: 0 auto;
     display: grid;
     gap: 30px;
     grid-template-areas:
         "cart info terms"
         "cart info terms";
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2.5fr 1fr 1fr;
 }
 
 /* Add to Checkout.css */

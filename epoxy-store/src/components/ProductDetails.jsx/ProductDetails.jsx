@@ -84,15 +84,12 @@ const ProductDetails = () => {
       <div className="product-details-container">
         <div className="product-gallery">
           {/* Main Image */}
-          <div className="main-image-container">
             <Image 
-              src={product.images?.[selectedImage]?.image_url || product.image_url} 
+              src={product.images?.[selectedImage]?.image_url} 
               alt={product.name} 
               size="large" 
               className="main-image"
             />
-          </div>
-          
           {/* Thumbnail Images */}
           <div className="thumbnail-container">
             {product.images?.map((image, index) => (
