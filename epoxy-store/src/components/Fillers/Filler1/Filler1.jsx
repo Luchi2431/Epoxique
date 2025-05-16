@@ -5,17 +5,14 @@ const Filler1 = () => {
     return (
         <div className="filler-container">
             <div className="filler-item">
-                <div className="icon">🔧</div>
                 <h3>Konfiguracija</h3>
                 <p>Konfigurišite vaš sto prema ličnim željama i u željenim dimenzijama po meri.</p>
             </div>
             <div className="filler-item">
-                <div className="icon">🌳</div>
                 <h3>Istražite</h3>
                 <p>Istražite našu široku ponudu plemenitog drveta (hrast, maslina, orah, brest, kesten i drugo).</p>
             </div>
             <div className="filler-item">
-                <div className="icon">🛡️</div>
                 <h3>Kvalitet</h3>
                 <p>Naša epoksi smola je netoksična i dolazi sa 10-godišnjom garancijom proizvođača protiv žućenja.</p>
             </div>  
