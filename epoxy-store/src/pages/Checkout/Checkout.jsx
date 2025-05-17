@@ -19,14 +19,6 @@ const Checkout = () => {
         postalCode: ''
     });
 
-    const updateQuantity = (id, quantity) => {
-        if (quantity < 1) return;
-        dispatch({
-            type: 'UPDATE_QUANTITY',
-            payload: { id, quantity }
-        });
-    };
-
     const removeFromCart = (id) => {
         dispatch({
             type: 'REMOVE_FROM_CART',
@@ -87,7 +79,7 @@ const Checkout = () => {
                     customer_city: customerInfo.city,
                     customer_postal_code: customerInfo.postalCode,
                     order_details: cart.map(item =>
-                        `${item.name} (${item.quantity}x) - $${item.price * item.quantity}`
+                        `${item.name} ${item.id} (${item.quantity}x) - $${item.price * item.quantity}`
                     ).join('\n'),
                     total_amount: `$${total.toFixed(2)}`
                 },
@@ -139,29 +131,19 @@ const Checkout = () => {
                             <Image src={item.image_url} alt={item.name} size="large" />
                             <div className="item-details">
                                 <h3>{item.name}</h3>
-                                <p>{item.description}</p>
-                                <p>Dimenzije: {item.dimensions.length}x{item.dimensions.width}x{item.dimensions.height}cm</p>
-                                <p className="price">${Number(item.price).toFixed(2)}</p>
-                                <div className="quantity-control">
-                                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
-                                    <input 
-                                        type="number" 
-                                        value={item.quantity} 
-                                        onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
-                                        min="1"
-                                    />
-                                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
-                                </div>
+                                <p><b>Opis:</b> {item.description}</p>
+                                <p><b>Dimenzije:</b> {item.dimensions.length}x{item.dimensions.width}x{item.dimensions.height}cm</p>
+                                <p className="price">Cena: ${Number(item.price).toFixed(2)}</p>
                                 <button className="remove-item" onClick={() => removeFromCart(item.id)}>
                                     Izbaci iz korpe
                                 </button>
+                                <div className="cart-summary">
+                                    <span>Ukupna cena: </span>
+                                    <span>${total.toFixed(2)}</span>  
+                                </div>
                             </div>
                         </div>
                     ))}
-                    <div className="cart-summary">
-                            <span>Ukupno:</span>
-                            <span>${total.toFixed(2)}</span>  
-                    </div>
                 </div>
 
                 <div className='customer-info'>

@@ -39,7 +39,7 @@ function Footer() {
                 </div>
             </div>
             <div className="footer-bottom">
-                <p>&copy; 2024 Epoxy Stolovi Pirot</p>
+                <p>&copy; Epoxique</p>
             </div>
         </footer>
     );

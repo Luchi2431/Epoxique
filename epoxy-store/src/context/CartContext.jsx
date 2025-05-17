@@ -6,33 +6,23 @@ const cartReducer = (state, action) => {
     let newState;
     switch(action.type) {
         case 'ADD_TO_CART':
+            //Check if item already exists in cart
             const existingItem = state.find(item => item.id === action.payload.id);
             if(existingItem) {
-                newState = state.map(item=>
-                    item.id === action.payload.id
-                    ? {...item,quantity: item.quantity+1}
-                    : item
-                );
+                //If item exists dont add it just return current state
+                return state;
             }else {
+                //Add new item with quantity of 1
                 newState = [...state, {...action.payload, quantity: 1}];
+                localStorage.setItem('cart', JSON.stringify(newState));
+                return newState;
             }
-            localStorage.setItem('cart', JSON.stringify(newState));
-            return newState;
             
         case 'REMOVE_FROM_CART':
             newState = state.filter(item=> item.id !== action.payload);
             localStorage.setItem('cart',JSON.stringify(newState));
             return newState;
-            
-        case 'UPDATE_QUANTITY':
-            newState = state.map(item =>
-                item.id === action.payload.id
-                ? {...item,quantity: action.payload.quantity}
-                : item
-            );
-            localStorage.setItem('cart',JSON.stringify(newState));
-            return newState;
-            
+
         case 'CLEAR_CART':
             localStorage.removeItem('cart');
             return [];
