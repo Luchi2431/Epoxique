@@ -14,7 +14,7 @@ app.use(cors({
         'https://www.epoxique.rs',
         'https://api.epoxique.rs',
         'http://localhost:5173',
-        'https://epoxique.rs',
+        'https://epoxique.rs/api',
     ],
     credentials: true,
     methods: ['GET','POST','PUT','DELETE','OPTIONS'],
