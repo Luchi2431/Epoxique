@@ -9,30 +9,13 @@ import { productService } from "../../api/services/productService";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Image from "../Image/Image";
 
-const formatDimensions = (dimensions) => {
-  if (!dimensions) return 'N/A';
-
-  try {
-    const dim = typeof dimensions === 'string' ? JSON.parse(dimensions) : dimensions;
-    if(dim.length && dim.width && dim.height) {
-        return `${dim.length}x${dim.width}x${dim.height} cm`;
-    }
-    return dimensions;
-  } catch (e) {
-    return dimensions;
-  }
-};
-
-
 const ProductDetails = () => {
-  const { dispatch } = useContext(CartContext);
+  //Distructure both cart and dispatch from context
+  const { cart,dispatch } = useContext(CartContext);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedDimension, setSelectedDimension] = useState("");
-  const [customDimension, setCustomDimension] = useState("");
-  const [useCustom, setUseCustom] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
 
   useEffect(() => {
@@ -41,11 +24,6 @@ const ProductDetails = () => {
         setLoading(true);
         const data = await productService.getProductById(id);
         setProduct(data);
-        if(data.dimensions) {
-          setSelectedDimension(
-            typeof data.dimensions === "string" ? data.dimensions : JSON.stringify(data.dimensions)
-          );
-        }
       } catch(err) {
         console.error("Failed to fetch product:", err);
         setError(err.message);
@@ -57,8 +35,22 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    const dimensionToAdd = useCustom ? customDimension : selectedDimension;
-    dispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity: 1, selectedDimension: dimensionToAdd } });
+  const isInCart = cart.some(item => item.id === product.id);
+    
+    if(isInCart) {
+      toast.warning("Ovaj sto je vec u korpi!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        toastId: 'already-in-cart'
+      });
+      return;
+    }
+
+    dispatch({ type: 'ADD_TO_CART', payload: { ...product } });
     setTimeout(() => {
       toast.success("Proizvod je dodat u korpu!", {
         position:"top-right",
@@ -109,39 +101,7 @@ const ProductDetails = () => {
         </div>
         <div className="product-summary">
           <h1 className="product-title">{product.name}</h1>
-          <p className="product-price">${product.price}</p>
-
-          <div className="dimension-selector">
-            <h3>Izaberi dimenzije</h3>
-            {!useCustom && (
-              <select 
-                value={selectedDimension} 
-                onChange={(e) => setSelectedDimension(e.target.value)}
-              >
-                {dimensionOptions.map((dim, index) => (
-                  <option 
-                    key={index} 
-                    value={typeof dim === "string" ? dim : JSON.stringify(dim)}
-                  >
-                    {formatDimensions(dim)}
-                  </option>
-                ))}
-              </select>
-            )}
-            <div style={{marginTop: "10px"}}>
-              <label>
-                <input type="checkbox" checked={useCustom} onChange={() => setUseCustom(!useCustom)}></input>
-                Zelim da unesem svoje dimenzije
-              </label>
-              {useCustom && (
-                <input type="text" value={customDimension} onChange={(e) => setCustomDimension(e.target.value)} 
-                placeholder="Unesite dimenzije npr. 120*80*60 cm"
-                style={{marginTop: "10px",width:"100%"}}
-                ></input>
-              )}
-            </div>
-
-          </div>
+          <p className="product-price">${product.price}</p> 
 
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Dodaj u korpu
@@ -154,7 +114,7 @@ const ProductDetails = () => {
           <div className="product-specs">
             <h2>Specifikacije</h2>
             <ul>
-              <li>Dimenzije: {useCustom ? customDimension : formatDimensions(selectedDimension)}</li>
+              <li><b>Dimenzije:</b> {product.dimensions.length}x{product.dimensions.width}x{product.dimensions.height}cm</li>
             </ul>
           </div>
         </div>

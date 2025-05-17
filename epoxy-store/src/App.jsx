@@ -3,7 +3,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import "./App.css";
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import { Suspense, lazy } from 'react'; // Fixed Suspence to Suspense
+import { Suspense, lazy } from 'react'; 
 import { CartProvider } from "./context/CartContext";
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { ToastContainer } from "react-toastify";
@@ -36,15 +36,22 @@ const App = () => {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/checkout" element={<Checkout/>}/>
                 <Route path="/contact" element={<Contact/>}/>
-                <Route path="/info/about" element={<About/>}/>
+
+                {/* Collection routes */}
                 <Route path="/collection" element={<Collection />} />
                 <Route path="/collection/:id" element={<CollectionItems />} />
+                <Route path="/product/:id" element={<ProductDetails/>}/>
+
+                {/* Info Pages */}
+                <Route path="/info/about" element={<About/>}/>
+                <Route path="/info/about/:id" element={<About/>}/>
                 <Route path="/info/reviews" element={<Reviews />} />
                 <Route path="/info/warranty" element={<Warranty />} />
                 <Route path="/info/dimensions" element={<Dimensions />} />
                 <Route path="/info/core" element={<Materials />} />
+
                 <Route path="/tableconfigurator" element={<TableConfigurator/>}/>
-                <Route path="/product/:id" element={<ProductDetails/>}/>
+                
               </Routes>
             </Suspense>
           </div>
