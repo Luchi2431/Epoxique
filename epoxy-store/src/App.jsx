@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import CollectionItems from "./components/CollectionItems/CollectionItems";
+import Gallery from "./pages/Gallery/Gallery";
 
 // Lazy imports remain the same
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -41,6 +42,9 @@ const App = () => {
                 <Route path="/collection" element={<Collection />} />
                 <Route path="/collection/:id" element={<CollectionItems />} />
                 <Route path="/product/:id" element={<ProductDetails/>}/>
+
+                {/* Gallery routes */}
+                <Route path="/gallery" element={<Gallery/>} />
 
                 {/* Info Pages */}
                 <Route path="/info/about" element={<About/>}/>

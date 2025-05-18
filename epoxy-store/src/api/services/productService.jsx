@@ -32,6 +32,14 @@ export const productService = {
             throw new Error('Failed to fetch highlighted products');
         }
         return response.json();
+    },
+
+    getGalleryProducts: async() => {
+        const response = await fetch(`${API_CONFIG.BASE_URL}${ENDPOINTS.PRODUCTS.GALLERY}`);
+        if(!response.ok) {
+            throw new Error('Failed to fetch gallery Products');
+        }
+        return response.json();
     }
 
 

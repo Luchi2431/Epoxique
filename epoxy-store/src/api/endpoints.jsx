@@ -2,8 +2,8 @@ export const ENDPOINTS = {
     PRODUCTS: {
         ALL: '/products',
         BY_ID: (id) => `/products/${id}`,
-        HIGHLIGHTED: '/products/highlighted'
-
+        HIGHLIGHTED: '/products/highlighted',
+        GALLERY: '/products/gallery'
     },
     CATEGORIES: {
         ALL: '/categories',

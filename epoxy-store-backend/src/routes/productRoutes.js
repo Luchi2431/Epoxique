@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/auth');
 const productController = require('../controllers/productController');
 
 //Highlighted products
 router.get('/highlighted',productController.getHighlightedProducts);
+
+//Get Gallery products
+router.get('/gallery',productController.getGalleryProducts);
 
 // Get all products
 router.get('/',productController.getAllProducts);
