@@ -190,23 +190,21 @@
         opacity: 1;
         visibility: visible;
         transform: none;
-        padding-left: 1rem;
         background: transparent;
         max-height: 0;              /* Start with 0 height */
         overflow: hidden;           /* Hide overflow content */
         transition: max-height 0.3s ease-in-out;
-        margin: 0;                  /* Remove any margins */
-        padding: 0 0 0 1rem;        /* Keep left padding, remove others */
+        margin: 0;             
     }
 
     .dropdown-content.show {
         max-height: 500px;          /* Adjust this value based on your content */
-        padding: 0.5rem 0 0.5rem 1rem; /* Add padding when open */
+         /* Add padding when open */
     }
 
     .dropdown-content li {
         opacity: 1;
-        margin: 0.5rem 0;
+        margin: 0;
     }
 
     .arrow {
