@@ -73,7 +73,7 @@ function Navbar() {
                                 <li><Link to="/info/about" onClick={handleLinkClick}>O nama</Link></li>
                                 <li><Link to="/info/reviews" onClick={handleLinkClick}>Recenzije</Link></li>
                                 <li><Link to="/info/warranty" onClick={handleLinkClick}>Garancija</Link></li>
-                                <li><Link to="/info/dimensions" onClick={handleLinkClick}>Vodič za dimenzije</Link></li>
+                                <li><Link to="/info/dimensions" onClick={handleLinkClick}>Dimenzije</Link></li>
                                 <li><Link to="/info/core" onClick={handleLinkClick}>Materijali</Link></li>
                             </ul>
                         </li>

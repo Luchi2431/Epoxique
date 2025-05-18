@@ -195,26 +195,71 @@
 
 
 @media (max-width: 768px) {
+    .checkout-wrapper {
+        padding: 20px 10px;
+    }
+
     .checkout-container {
         grid-template-areas: "cart" "info" "terms";
         grid-template-columns: 1fr;
+        gap:20px;
     }
     
     .cart-item {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        gap:15px;
+        padding: 15px 0;
+    }
+
+    .cart-item.image-wrapper {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 1;
     }
     
     .item-details {
         width: 100%;
     }
     
+    .cart-summary {
+        margin-top: 15px;
+        font-size:20px;
+    }
+
     .quantity-control {
         justify-content: center;
+        margin: 10px 0;
     }
     .customer-info,
     .terms-section {
         width: 100%;
+        padding: 20px;
+    }
+
+    .remove-item {
+        width: 100%;
+        max-width: 200px;
+        margin: 10px auto;
+    }
+
+    .checkout-button {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-item .image-wrapper {
+        max-width: 250px;
+    }
+
+    .cart-summary {
+        font-size: 18px;
+    }
+
+    .customer-info input {
+        padding: 10px;
     }
 }
