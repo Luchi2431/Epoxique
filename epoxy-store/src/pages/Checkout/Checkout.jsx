@@ -24,14 +24,14 @@ const Checkout = () => {
             type: 'REMOVE_FROM_CART',
             payload: id
         });
-        toast.success('Item izbacen iz korpe');
+        toast.success('Item izbačen iz korpe');
     };
 
     const total = cart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
 
     const handleCheckout = async () => {
         if (!termsAccepted) {
-            toast.error('Molim vas prihvatite uslove i odredbe pre nego sto nastavite!');
+            toast.error('Molim vas prihvatite uslove i odredbe pre nego što nastavite!');
             return;
         }
 
@@ -99,7 +99,7 @@ const Checkout = () => {
             setTermsAccepted(false);
         }catch(error) {
             console.error('Error sending email:', error);
-            toast.error('Doslo je do greske prilikom slanja email-a!');
+            toast.error('Došlo je do greške prilikom slanja email-a!');
         }
         
     };
