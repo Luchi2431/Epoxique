@@ -155,7 +155,45 @@ const productController = {
         }catch(err) {
             res.status(500).json({error: err.message});
         }
+    },
+
+    getGalleryProducts: async(req,res) => {
+        try {
+            const query = `
+                WITH product_first_image AS (
+                    SELECT DISTINCT ON (product_id) 
+                        product_id, 
+                        image_url
+                    FROM product_images
+                    ORDER BY product_id, id
+                )
+                SELECT 
+                    p.*,
+                    pfi.image_url
+                FROM products p
+                LEFT JOIN product_first_image pfi ON p.id = pfi.product_id
+                WHERE p.status = 'gallery'
+                ORDER BY p.created_at DESC`;
+            const result = await pool.query(query);
+            res.json(result.rows);
+        } catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    updateProductStatus: async(req, res) => {
+        try {
+            const {id} = req.params;
+            const {status} = req.body;
+            const query = 'UPDATE products SET status = $1 WHERE id = $2 RETURNING *';
+            const result = await pool.query(query,[status,id]);
+            res.json(result.rows[0]); 
+        }catch(err) {
+            res.json(500).json({error: err.message});
+        }
     }
+
+    
 
 };
 

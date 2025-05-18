@@ -60,6 +60,7 @@ function Navbar() {
 
                 <div className={`nav-elements ${isOpen ? 'active' : ''}`}>
                     <ul>
+                        <li><Link to="/gallery" onClick={handleLinkClick}>Galerija</Link></li>                        
                         <li><Link to="/collection" onClick={handleLinkClick}>Kolekcija</Link></li>
                         <li><Link to="/contact" onClick={handleLinkClick}>Kontakt</Link></li>
                         <li className="dropdown" ref={dropdownRef}>
