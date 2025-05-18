@@ -79,7 +79,7 @@ const ProductDetails = () => {
             <Image 
               src={product.images?.[selectedImage]?.image_url} 
               alt={product.name} 
-              size="large" 
+              size="medium" 
               className="main-image"
             />
           {/* Thumbnail Images */}
@@ -102,11 +102,6 @@ const ProductDetails = () => {
         <div className="product-summary">
           <h1 className="product-title">{product.name}</h1>
           <p className="product-price">${product.price}</p> 
-
-          <button className="add-to-cart-button" onClick={handleAddToCart}>
-            Dodaj u korpu
-          </button>
-
           <div className="product-description">
             <h2>Opis proizvoda</h2>
             <p>{product.description || "Rucno izradjen epoxy sto od premijum materijala"}</p>
@@ -117,6 +112,9 @@ const ProductDetails = () => {
               <li><b>Dimenzije:</b> {product.dimensions.length}x{product.dimensions.width}x{product.dimensions.height}cm</li>
             </ul>
           </div>
+          <button className="add-to-cart-button" onClick={handleAddToCart}>
+            Dodaj u korpu
+          </button>
         </div>
         <ToastContainer/>
       </div>
