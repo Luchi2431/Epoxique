@@ -38,7 +38,7 @@ const ProductDetails = () => {
   const isInCart = cart.some(item => item.id === product.id);
     
     if(isInCart) {
-      toast.warning("Ovaj sto je vec u korpi!", {
+      toast.warning("Ovaj sto je već u korpi!", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -65,8 +65,9 @@ const ProductDetails = () => {
   };
 
   if (loading) return <LoadingSpinner />;
-  if (error) return <div>Error: {error}</div>;
-  if (!product) return <div>Product not found</div>;
+  if (error) return <div>Greška: {error}</div>;
+  if (!product) return <div>Proizvod nije pronadjen</div>;
+  if(product.status !== 'available') return <div>Ovaj proizvod nije dostupan</div>
 
   const dimensionOptions = Array.isArray(product.dimensions) ? product.dimensions : [product.dimensions];
 

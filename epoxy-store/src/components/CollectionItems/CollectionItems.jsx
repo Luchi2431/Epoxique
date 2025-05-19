@@ -11,31 +11,44 @@ const CollectionItems = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [products, setProducts] = useState([]);
+    const [categoryName, setCategoryName] = useState('');
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
+                //Prvo uzimamo ime kategorije
+                const category = await categoryService.getCategoryById(id);
+                setCategoryName(category.name);
+                //Pa proveravamo da li ima proizvoda u toj kategoriji
                 const data = await categoryService.getProductsByCategoryId(id);
                 setProducts(data);
             } catch (err) {
-                setError(err.message);
+                setError('no-products');
             } finally {
                 setLoading(false);
             }
         };
-
         fetchProducts();
     }, [id]); // Only re-run when id changes
 
     if (loading) return <LoadingSpinner />;
-    if (error) return <div>Error: {error}</div>;
-    if (!products || products.length === 0) return <div>No products found in this category</div>;
+    if (error === 'no-products') {
+        return (
+            <div className='collection-container'>
+                <Breadcrumbs/>
+                <div className='no-products-message'>
+                    <h1>{categoryName || 'Kolekcija'}</h1>
+                    <p>Trenutno nema dostupnih proizvoda u ovoj kategoriji</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="collection-container">
             <Breadcrumbs />
-            <h1>{products[0]?.category_name || 'Kolekcija'}</h1>
+            <h1>{categoryName || 'Kolekcija'}</h1>
             <div className="products-grid">
                 {products.map((product) => (
                     <ProductCard 

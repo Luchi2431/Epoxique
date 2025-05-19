@@ -41,6 +41,10 @@ exports.createOrder = async(req, res) =>  {
             );
         }
 
+        for(const item of items) {
+            await db.query('UPDATE products SET status = $1 WHERE id = $2',['gallery',item.id]);
+        }
+
         await db.query('COMMIT');
 
         res.status(201).json({
