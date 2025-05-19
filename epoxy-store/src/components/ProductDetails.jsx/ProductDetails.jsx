@@ -38,7 +38,7 @@ const ProductDetails = () => {
   const isInCart = cart.some(item => item.id === product.id);
     
     if(isInCart) {
-      toast.warning("Ovaj sto je već u korpi!", {
+      toast.warning("Ovaj proizvod je već u korpi!", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

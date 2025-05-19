@@ -11,7 +11,7 @@ function Footer() {
                         <li><Link to="/">Početna</Link></li>
                         <li><Link to="/collection">Kolekcija</Link></li>
                         <li><Link to="/contact">Kontakt</Link></li>
-                        <li><Link to="/cart">Korpa</Link></li>
+                        <li><Link to="/checkout">Korpa</Link></li>
                     </ul>
                 </div>
 
