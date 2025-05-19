@@ -24,5 +24,18 @@ export const categoryService = {
             throw new Error("Failed to fetch featured categories");
         }
         return response.json();
+    },
+
+    getCategoryById: async(id) => {
+        try {
+            const response = await fetch(`${API_CONFIG.BASE_URL}${ENDPOINTS.CATEGORIES.BY_ID2(id)}`)
+            if(!response.ok) {
+                throw new Error('Category not found');
+            }
+            return await response.json();
+
+        }catch(error) {
+            throw new Error(error.message);
+        }
     }
 };

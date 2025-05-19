@@ -4,7 +4,7 @@ const productController = {
     //Get all products
     getAllProducts: async(req,res) => {
         try {
-            const result = await pool.query('SELECT * FROM products');
+            const result = await pool.query(`SELECT * FROM products WHERE status='available'`);
             res.json(result.rows);
         }catch(err) {
             res.status(500).json({error: err.message});
@@ -150,7 +150,7 @@ const productController = {
 
     getHighlightedProducts: async(req,res) => {
         try {
-            const result = await pool.query(`SELECT * FROM products ORDER BY RANDOM() LIMIT 4`);
+            const result = await pool.query(`SELECT * FROM products WHERE status='available' ORDER BY RANDOM() LIMIT 4`);
             res.json(result.rows);
         }catch(err) {
             res.status(500).json({error: err.message});
@@ -179,21 +179,7 @@ const productController = {
         } catch(err) {
             res.status(500).json({error: err.message});
         }
-    },
-
-    updateProductStatus: async(req, res) => {
-        try {
-            const {id} = req.params;
-            const {status} = req.body;
-            const query = 'UPDATE products SET status = $1 WHERE id = $2 RETURNING *';
-            const result = await pool.query(query,[status,id]);
-            res.json(result.rows[0]); 
-        }catch(err) {
-            res.json(500).json({error: err.message});
-        }
     }
-
-    
 
 };
 

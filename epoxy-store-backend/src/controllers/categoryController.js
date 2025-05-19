@@ -21,7 +21,7 @@ const categoryController = {
             FROM products p
             JOIN categories c 
             ON p.category_id = c.id
-            WHERE c.id = $1`;
+            WHERE c.id = $1 AND p.status = 'available'`;
             
             const result = await pool.query(query,[id]);
 
@@ -47,6 +47,18 @@ const categoryController = {
 
              const result = await pool.query(query,[featuredIds]);
              res.json(result.rows);
+        }catch(err) {
+            res.status(500).json({error:err.message});
+        }
+    },
+
+    getCategoryByID: async(req,res) => {
+        try {
+            const {id} = req.params;
+            const query = 'SELECT * FROM categories WHERE id=$1';
+            const result = await pool.query(query,[id]);
+            res.json(result.rows[0]);
+
         }catch(err) {
             res.status(500).json({error:err.message});
         }

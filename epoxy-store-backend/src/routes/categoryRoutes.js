@@ -10,4 +10,6 @@ router.get('/:id/products',categoryController.getProductsByCategoryId);
 
 router.get('/featured',categoryController.getFeaturedCategories);
 
+router.get('/:id',categoryController.getCategoryByID);
+
 module.exports = router;
