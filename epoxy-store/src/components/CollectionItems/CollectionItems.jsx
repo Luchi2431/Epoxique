@@ -39,7 +39,7 @@ const CollectionItems = () => {
                 <Breadcrumbs/>
                 <div className='no-products-message'>
                     <h1>{categoryName || 'Kolekcija'}</h1>
-                    <p>Trenutno nema dostupnih proizvoda u ovoj kategoriji</p>
+                    <p>Trenutno nema dostupnih proizvoda u ovoj kolekciji</p>
                 </div>
             </div>
         );
