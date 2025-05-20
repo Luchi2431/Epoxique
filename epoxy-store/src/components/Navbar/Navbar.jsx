@@ -1,85 +1,135 @@
-import { useState,useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropdownRef = useRef(null);
+    const [activeDropdown, setActiveDropdown] = useState(null);
+    const navRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if(dropdownRef.current && !dropdownRef.current.contains(event.target) && !event.target.closest('.dropdown-trigger')) {
-                setIsDropdownOpen(false);
+            if (navRef.current && !navRef.current.contains(event.target)) {
+                setIsOpen(false);
+                setActiveDropdown(null);
             }
         };
-        if(window.innerWidth <= 768) {
-            document.addEventListener('mousedown', handleClickOutside);
-        }
+
+        document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    // Close menu when window is resized
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 968) {
+                setIsOpen(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+        if (isOpen) {
+            setActiveDropdown(null);
+        }
     };
 
-    const closeMenu = () => {
-        setIsOpen(false);   
-    };
-
-    const toggleDropdown = (e) => {
-        //Prevent toggle on desktop
-        if(window.innerWidth > 768) return;
-        e.preventDefault();
-        e.stopPropagation();
-        setIsDropdownOpen(!isDropdownOpen);
+    const toggleDropdown = (name) => (e) => {
+        if (window.innerWidth <= 968) {
+            e.preventDefault();
+            setActiveDropdown(activeDropdown === name ? null : name);
+        }
     };
 
     const handleLinkClick = () => {
-        closeMenu();
-        setIsDropdownOpen(false);  
+        setIsOpen(false);
+        setActiveDropdown(null);
     };
 
     return (
-        <header className="navbar">
-            <nav className="navbar-container">
-                <Link to="/" className="logo" onClick={closeMenu}>
+        <header className="header1">
+            <nav className="nav container" ref={navRef}>
+                <Link to="/" className="nav__logo" onClick={handleLinkClick}>
                     Epoxique
                 </Link>
 
-                <button 
-                    className={`hamburger ${isOpen ? 'active' : ''}`}
-                    onClick={toggleMenu}
-                    aria-label="Menu"
-                    aria-expanded={isOpen}
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-
-                <div className={`nav-elements ${isOpen ? 'active' : ''}`}>
-                    <ul>
-                        <li><Link to="/gallery" onClick={handleLinkClick}>Galerija</Link></li>                        
-                        <li><Link to="/collection" onClick={handleLinkClick}>Kolekcija</Link></li>
-                        <li><Link to="/contact" onClick={handleLinkClick}>Kontakt</Link></li>
-                        <li className="dropdown" ref={dropdownRef}>
-                            <div className="dropdown-trigger" onClick={toggleDropdown} role="button" tabIndex={0}>
-                                <span className="span">Informacije</span>
-                                <svg className={`arrow ${isDropdownOpen ? 'rotate' : ''}`} width="10" height="6" viewBox="0 0 10 6">
-                                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                                </svg>
+                <div className={`nav__menu ${isOpen ? 'show-menu' : ''}`}>
+                    <ul className="nav__list">
+                        <li className="nav__item">
+                            <Link to="/gallery" className="nav__link" onClick={handleLinkClick}>
+                                Galerija
+                            </Link>
+                        </li>
+                        
+                        <li className="nav__item">
+                            <Link to="/collection" className="nav__link" onClick={handleLinkClick}>
+                                Kolekcija
+                            </Link>
+                        </li>
+                        
+                        <li className="nav__item">
+                            <Link to="/contact" className="nav__link" onClick={handleLinkClick}>
+                                Kontakt
+                            </Link>
+                        </li>
+                        
+                        <li className={`nav__item dropdown ${activeDropdown === 'info' ? 'dropdown-active' : ''}`}>
+                            <div className="nav__link dropdown__button" onClick={toggleDropdown('info')}>
+                                Informacije
+                                <i className="ri-arrow-down-s-line dropdown__arrow"></i>
                             </div>
-                            <ul className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                                <li><Link to="/info/about" onClick={handleLinkClick}>O nama</Link></li>
-                                <li><Link to="/info/reviews" onClick={handleLinkClick}>Recenzije</Link></li>
-                                <li><Link to="/info/warranty" onClick={handleLinkClick}>Garancija</Link></li>
-                                <li><Link to="/info/dimensions" onClick={handleLinkClick}>Dimenzije</Link></li>
-                                <li><Link to="/info/core" onClick={handleLinkClick}>Materijali</Link></li>
+
+                            <ul className="dropdown__menu">
+                                <li className="dropdown__item">
+                                    <Link to="/info/about" className="dropdown__link" onClick={handleLinkClick}>
+                                        O nama
+                                    </Link>
+                                </li>
+                                
+                                <li className="dropdown__item">
+                                    <Link to="/info/reviews" className="dropdown__link" onClick={handleLinkClick}>
+                                        Recenzije
+                                    </Link>
+                                </li>
+                                
+                                <li className="dropdown__item">
+                                    <Link to="/info/warranty" className="dropdown__link" onClick={handleLinkClick}>
+                                        Garancija
+                                    </Link>
+                                </li>
+                                
+                                <li className="dropdown__item">
+                                    <Link to="/info/dimensions" className="dropdown__link" onClick={handleLinkClick}>
+                                        Dimenzije
+                                    </Link>
+                                </li>
+                                
+                                <li className="dropdown__item">
+                                    <Link to="/info/core" className="dropdown__link" onClick={handleLinkClick}>
+                                        Materijali
+                                    </Link>
+                                </li>
                             </ul>
                         </li>
-                        <li><Link to="/checkout" onClick={handleLinkClick}>Korpa</Link></li>
+                        
+                        <li className="nav__item">
+                            <Link to="/checkout" className="nav__link" onClick={handleLinkClick}>
+                                <i className="ri-shopping-cart-line"></i>
+                            </Link>
+                        </li>
                     </ul>
+
+                    <div className="nav__close" onClick={toggleMenu}>
+                        <i className="ri-close-line"></i>
+                    </div>
+                </div>
+
+                <div className="nav__toggle" onClick={toggleMenu}>
+                    <i className="ri-menu-line"></i>
                 </div>
             </nav>
         </header>

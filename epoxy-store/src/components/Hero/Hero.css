@@ -1,13 +1,14 @@
 .hero {
     position: relative;
     width: 100%;
-    height: 85vh;
+    height: 85h;
     background: url('/naslovna.jpg') no-repeat center 15%;
     background-size: 130%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-top: var(--header-height);
 }
 
 .hero-content {
@@ -20,7 +21,7 @@
 }
 
 .slikica {
-    margin-top: 0px;
+    margin-top: 20px;
     height: 400px;
 }
 
