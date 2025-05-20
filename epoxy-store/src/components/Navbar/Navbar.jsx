@@ -39,10 +39,8 @@ function Navbar() {
     };
 
     const toggleDropdown = (name) => (e) => {
-        if (window.innerWidth <= 968) {
             e.preventDefault();
             setActiveDropdown(activeDropdown === name ? null : name);
-        }
     };
 
     const handleLinkClick = () => {
@@ -78,7 +76,7 @@ function Navbar() {
                         </li>
                         
                         <li className={`nav__item dropdown ${activeDropdown === 'info' ? 'dropdown-active' : ''}`}>
-                            <div className="nav__link dropdown__button" onClick={toggleDropdown('info')}>
+                            <div className="nav__link dropdown__button" onClick={toggleDropdown('info')} role="button" tabIndex={0}>
                                 Informacije
                                 <i className="ri-arrow-down-s-line dropdown__arrow"></i>
                             </div>
