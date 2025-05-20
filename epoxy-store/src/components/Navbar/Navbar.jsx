@@ -40,7 +40,7 @@ function Navbar() {
 
     const toggleDropdown = (name) => (e) => {
             e.preventDefault();
-            setActiveDropdown(activeDropdown === name ? null : name);
+            setActiveDropdown(current => current === name ? null : name );
     };
 
     const handleLinkClick = () => {
