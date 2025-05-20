@@ -17,14 +17,8 @@ const Materials = () => {
                         <li><b>Orah</b> - poznat po bogatoj boji i teksturi, često se koristi za luksuzne stolove.</li>
                         <li><b>Jasen</b> - svetlije boje, ima dobru otpornost.</li>
                         <li><b>Tresnja</b> - toplih tonova, stari s vremenom i dobija bogatiju boju.</li>
-                        <li><b>Maslina</b> - egzotična, sa izraženim šarama</li>
                     </ul>
                     <h3>Mekano drvo:</h3>
-                    <p>Mekano drvo zahteva dodatnu obradu, poput stabilizacije smolom, kako bi se povećala njegova čvrstoća i trajnost.</p>
-                    <ul>
-                        <li><b>Bor</b> - zahteva stabilizaciju zbog mekoće</li>
-                        <li><b>Jela</b> - koristi se za rustične dizajne</li>
-                    </ul>
                 </div>
 
                 <div className="materials-section">

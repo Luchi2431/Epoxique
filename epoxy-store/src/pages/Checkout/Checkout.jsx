@@ -23,7 +23,7 @@ const Checkout = () => {
             type: 'REMOVE_FROM_CART',
             payload: id
         });
-        toast.success('Item izbačen iz korpe');
+        toast.success('Proizvod izbačen iz korpe');
     };
 
     const total = cart.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
