@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { productService } from "../../api/services/productService";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import Image from "../Image/Image";
+import LightboxGallery from "../LightboxGallery/LightboxGallery";
 
 const ProductDetails = () => {
   //Distructure both cart and dispatch from context
@@ -17,6 +18,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -64,6 +66,14 @@ const ProductDetails = () => {
     }, 0);
   };
 
+  const openLightbox = () => {
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
   if (loading) return <LoadingSpinner />;
   if (error) return <div>Greška: {error}</div>;
   if (!product) return <div>Proizvod nije pronadjen</div>;
@@ -76,13 +86,19 @@ const ProductDetails = () => {
       <Breadcrumbs />
       <div className="product-details-container">
         <div className="product-gallery">
-          {/* Main Image */}
+          {/* Main Image with click handler to open lightbox */}
+          <div className="main-image-wrapper" onClick={openLightbox}>
             <Image 
               src={product.images?.[selectedImage]?.image_url} 
               alt={product.name} 
               size="medium" 
               className="main-image"
             />
+            <div className="image-overlay">
+              <span className="zoom-icon">🔍</span>
+            </div>
+          </div>
+          
           {/* Thumbnail Images */}
           <div className="thumbnail-container">
             {product.images?.map((image, index) => (
@@ -119,6 +135,15 @@ const ProductDetails = () => {
         </div>
         <ToastContainer/>
       </div>
+
+      {/* Lightbox Gallery */}
+      {lightboxOpen && (
+        <LightboxGallery 
+          images={product.images} 
+          initialIndex={selectedImage} 
+          onClose={closeLightbox} 
+        />
+      )}
     </>
   );
 };
