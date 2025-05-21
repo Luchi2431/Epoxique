@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import './ProductDetails.css';
 import { CartContext } from "../../context/CartContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
@@ -12,13 +12,17 @@ import LightboxGallery from "../LightboxGallery/LightboxGallery";
 
 const ProductDetails = () => {
   //Distructure both cart and dispatch from context
-  const { cart,dispatch } = useContext(CartContext);
+  const { cart, dispatch } = useContext(CartContext);
   const { id } = useParams();
+  const location = useLocation();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  
+  // Check if the user is coming from the gallery
+  const isFromGallery = new URLSearchParams(location.search).get('fromGallery') === 'true';
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -53,17 +57,17 @@ const ProductDetails = () => {
     }
 
     dispatch({ type: 'ADD_TO_CART', payload: { ...product } });
-    setTimeout(() => {
-      toast.success("Proizvod je dodat u korpu!", {
-        position:"top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        toastId: 'add-to-cart'
-      });
-    }, 0);
+    // setTimeout(() => {
+    //   toast.success("Proizvod je dodat u korpu!", {
+    //     position:"top-right",
+    //     autoClose: 2000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     toastId: 'add-to-cart'
+    //   });
+    // }, 0);
   };
 
   const openLightbox = () => {
@@ -118,7 +122,7 @@ const ProductDetails = () => {
         </div>
         <div className="product-summary">
           <h1 className="product-title">{product.name}</h1>
-          <p className="product-price">${product.price}</p> 
+          {!isFromGallery && <p className="product-price">${product.price}</p>}
           <div className="product-description">
             <h2>Opis proizvoda</h2>
             <p>{product.description || "Rucno izradjen epoxy sto od premijum materijala"}</p>
@@ -129,9 +133,11 @@ const ProductDetails = () => {
               <li><b>Dimenzije:</b> {product.dimensions.length}x{product.dimensions.width}x{product.dimensions.height}cm</li>
             </ul>
           </div>
-          <button className="add-to-cart-button" onClick={handleAddToCart}>
-            Dodaj u korpu
-          </button>
+          {!isFromGallery && (
+            <button className="add-to-cart-button" onClick={handleAddToCart}>
+              Dodaj u korpu
+            </button>
+          )}
         </div>
         <ToastContainer/>
       </div>

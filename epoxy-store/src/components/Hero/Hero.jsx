@@ -12,7 +12,7 @@ const Hero = () => {
                 <img src="/logo2.svg" alt="Epoxique logo" className='slikica' />
                 <p className='podnaslov'>Ručno radjeni Epoxy Stolovi</p>
                 <p className='manjipodnaslov'>Jedinstveni dizajn da ulepša vaš prostor</p>
-                <button className='CustomOrderBtn' onClick={() => navigate('/tableconfigurator')}>Narudzbina po meri</button>
+                <button className='CustomOrderBtn' onClick={() => navigate('/tableconfigurator')}>Narudžbina po meri</button>
                 <button 
                     className='CollectionBtn' 
                     onClick={() => navigate('/collection')}

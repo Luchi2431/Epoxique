@@ -16,8 +16,10 @@ const Collection = () => {
     if (!categories || categories.length === 0) return <div>Nijedna kategorija nije nadjena</div>;
 
     return (
+        <>
+        <Breadcrumbs />
         <div className="collection-container">
-            <Breadcrumbs />
+            
             <h1>Nasa kolekcija</h1>
             <div className="collections-grid">
                 {categories.map((category) => (
@@ -34,6 +36,7 @@ const Collection = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 

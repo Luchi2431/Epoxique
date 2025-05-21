@@ -31,10 +31,9 @@
 
 .hero button {
     padding: 1.1rem 3rem;
-    font-size: 1.3rem;
-    font-weight: 600;
+    font-size: 1.5rem;
     color: #fff;
-    background: linear-gradient(90deg, #666 0%, #797676 100%);
+    background: linear-gradient(90deg, #535252 0%, #393838 100%);
     border: none;
     border-radius: 0;
     cursor: pointer;
@@ -63,7 +62,7 @@
 .CollectionBtn {
     padding: 1.2rem 3rem;
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 200;
     color: #fff;
     background: linear-gradient(90deg, #222 0%, #444 100%);
     border: none;

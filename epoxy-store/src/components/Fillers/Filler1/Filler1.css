@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 100%;
-    padding: 0 2rem;
+    padding: 1.2rem 1.2rem;
     gap: 2rem;
     background-color:rgb(236, 234, 234)
 }
@@ -10,7 +10,7 @@
 .filler-item {
     flex: 1;
     text-align: center;
-    padding: 1.5rem;
+    padding: 2rem;
     transition: transform 0.3s ease;
 }
 
@@ -18,20 +18,16 @@
     transform: translateY(-5px);
 }
 
-.icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
 
 .filler-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: .5rem;
     color: #333;
     font-weight: 500;
 }
 
 .filler-item p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     color: #666;
 }
@@ -45,5 +41,13 @@
     .filler-item {
         width: 100%;
         max-width: 400px;
+    }
+
+    .filler-item p {
+        font-size: 1rem;
+    }
+
+    .filler-item h3 {
+        font-size: 1.5rem;
     }
 }

@@ -10,7 +10,7 @@
 
   /*========== Font and typography ==========*/
   --body-font: 'Poppins', sans-serif;
-  --normal-font-size: 1rem;
+  --normal-font-size: 1.25rem;
   --small-font-size: .8rem;
   --smaller-font-size: .75rem;
 
@@ -53,6 +53,14 @@
   font-size: 2rem;
   transition: color 0.3s;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.nav__logo-text {
+  color: inherit;
 }
 
 .ri-shopping-cart-line {
@@ -153,6 +161,7 @@
   align-items: center;
   column-gap: .75rem;
   margin: 0;
+  margin-left: 2rem;
 }
 
 .dropdown__link {
