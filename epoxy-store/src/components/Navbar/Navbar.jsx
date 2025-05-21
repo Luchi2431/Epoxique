@@ -52,20 +52,26 @@ function Navbar() {
         <header className="header1">
             <nav className="nav container" ref={navRef}>
                 <Link to="/" className="nav__logo" onClick={handleLinkClick}>
-                    Epoxique
+                    <span className="nav__logo-text">Epoxique</span>
                 </Link>
 
                 <div className={`nav__menu ${isOpen ? 'show-menu' : ''}`}>
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <Link to="/gallery" className="nav__link" onClick={handleLinkClick}>
-                                Galerija
-                            </Link>
-                        </li>
-                        
-                        <li className="nav__item">
                             <Link to="/collection" className="nav__link" onClick={handleLinkClick}>
                                 Kolekcija
+                            </Link>
+                        </li>
+
+                        <li className="nav__item">
+                            <Link to="/tableconfigurator" className="nav__link" onClick={handleLinkClick}>
+                                Narudžbina po meri
+                            </Link>
+                        </li>
+
+                        <li className="nav__item">
+                            <Link to="/gallery" className="nav__link" onClick={handleLinkClick}>
+                                Galerija
                             </Link>
                         </li>
                         

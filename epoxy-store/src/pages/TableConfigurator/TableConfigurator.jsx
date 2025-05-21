@@ -153,7 +153,8 @@ const TableConfigurator = () => {
                                 <option value="">Izaberite vrstu drveta</option>
                                 <option value="oak">Hrast</option>
                                 <option value="walnut">Orah</option>
-                                <option value="maple">Javor</option>
+                                <option value="maple">Jasen</option>
+                                <option value="maple">Trešnja</option>
                             </select>
                         </div>
 

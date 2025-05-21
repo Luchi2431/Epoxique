@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -42,8 +42,40 @@ export const CartProvider = ({children}) => {
         return localCart ? JSON.parse(localCart) : [];
     });
     
+    // Add notification state
+    const [notification, setNotification] = useState({
+        visible: false,
+        productName: '',
+    });
+
+    // Custom dispatch function to handle notifications
+    const dispatchWithNotification = (action) => {
+        dispatch(action);
+        
+        // If an item is added to cart, show the notification
+        if (action.type === 'ADD_TO_CART') {
+            setNotification({
+                visible: true,
+                productName: action.payload.name,
+            });
+        }
+    };
+
+    // Function to close the notification
+    const closeNotification = () => {
+        setNotification({
+            visible: false,
+            productName: '',
+        });
+    };
+    
     return (
-        <CartContext.Provider value={{cart, dispatch}}>
+        <CartContext.Provider value={{
+            cart, 
+            dispatch: dispatchWithNotification, 
+            notification,
+            closeNotification
+        }}>
             {children}
         </CartContext.Provider>
     );
