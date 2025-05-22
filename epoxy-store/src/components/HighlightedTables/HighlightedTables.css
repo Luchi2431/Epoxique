@@ -1,9 +1,7 @@
 .highlighted-tables {
-    padding: 60px 20px;
+    padding: 3rem 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
-
 }
 
 .highlighted-tables h2 {
@@ -14,88 +12,158 @@
 }
 
 .highlighted-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display:flex;
     gap: 2rem;
     justify-content: center;
+    align-items: stretch;
+    padding: 0 0.5rem;
 }
 
 .highlight-card {
-    width: 100%;
-    max-width: 350px    ;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100%;
     background: white;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-
+    margin: 0 auto;
+    width: 100%;
+    max-width: 350px;
 }
 
 .highlight-card:hover {
     transform: translateY(-5px);
 }
 
+.highlight-card .image-wrapper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
 .highlight-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 40px;
+    padding: 1.5rem;
+    flex: 1;
 }
 
 .highlight-content h3 {
     font-size: 1.5rem;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
 }
 
 .highlight-content p {
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     line-height: 1.5;
-    flex-grow: 1;
 }
 
 .highlight-content .price {
     font-size: 1.25rem;
     font-weight: bold;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
+    margin-top: auto;
 }
 
 .view-button {
-    margin-top: auto;
-    align-self: start;
     display: inline-block;
-    padding: 10px 20px;
+    padding: 0.75rem 1.25rem;
     background-color: #333;
     color: white;
     text-decoration: none;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    align-self: flex-start;
 }
 
 .view-button:hover {
     background-color: #444;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+    .highlighted-tables {
+        padding: 2.5rem 1.25rem;
+    }
+    
+    .highlighted-tables h2 {
+        font-size: 2.2rem;
+        margin-bottom: 1.75rem;
+    }
+    
+    .highlighted-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .highlight-content {
+        padding: 1.25rem;
+    }
+}
 
+@media (max-width: 768px) {
+    .highlighted-tables {
+        padding: 2rem 1rem;
+    }
 
     .highlighted-tables h2 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .highlighted-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.25rem;
     }
 
     .highlight-card {
         max-width: 300px;
     }
+    
+    .highlight-content {
+        padding: 1rem;
+    }
+    
+    .highlight-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+}
 
+@media (max-width: 576px) {
+    .highlighted-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    .highlight-card {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .highlight-content p {
+        margin-bottom: 0.75rem;
+    }
+    
+    .highlight-content .price {
+        margin-bottom: 0.75rem;
+    }
+    
+    .view-button {
+        width: 100%;
+        padding: 0.75rem;
+    }
 }

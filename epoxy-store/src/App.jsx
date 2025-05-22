@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CollectionItems from "./components/CollectionItems/CollectionItems";
 import Gallery from "./pages/Gallery/Gallery";
 import CartNotification from "./components/CartNotification/CartNotification";
+import NotFound from "./pages/NotFound/NotFound";
 
 // Lazy imports remain the same
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -23,7 +24,7 @@ const Warranty = lazy(() => import('./pages/Info/Warranty/Warranty'));
 const Dimensions = lazy(() => import('./pages/Info/Dimensions/Dimensions'));
 const Materials = lazy(() => import('./pages/Info/Materials/Materials'));
 const TableConfigurator = lazy(() => import('./pages/TableConfigurator/TableConfigurator'));
-const ProductDetails = lazy(() => import('./components/ProductDetails.jsx/ProductDetails'));
+const ProductDetails = lazy(() => import('./components/ProductDetails/ProductDetails'));
 
 // App wrapper with access to context
 const AppContent = () => {
@@ -42,6 +43,7 @@ const AppContent = () => {
         <Suspense fallback={<div className="loading">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="*" element={<NotFound />} />
             <Route path="/checkout" element={<Checkout/>}/>
             <Route path="/contact" element={<Contact/>}/>
 

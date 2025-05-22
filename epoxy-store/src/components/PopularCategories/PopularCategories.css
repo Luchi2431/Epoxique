@@ -1,8 +1,8 @@
-
 .popular-categories {
-    padding: 50px 20px;
+    padding: 2rem 1rem;
     background-color: #f5f5f5;
     text-align: center;
+    margin: 0 auto;
 }
 
 .popular-categories h1 {
@@ -11,28 +11,34 @@
 
 .popular-categories .header {
     font-size: 2.5rem;
-    margin-bottom: 50px;
+    margin-bottom: 2rem;
     color: #333;
 }
 
 .categories {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
     justify-content: center;
-    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
 }
 
 .category {
-    display: grid;
-    margin: 0 auto;
+    position: relative;
     background: white;
-    border-radius: 20px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 1200px;
-    gap: 30px;
-    
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 250px;
+    width: 100%;
 }
 
 .category:hover {
@@ -40,16 +46,83 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+.category .image-wrapper {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    overflow: hidden;
+}
+
 .category p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #333;
-    padding: 15px;
+    padding: 1rem;
     margin: 0;
+    font-weight: 500;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.25rem;
+    }
+    
     .category {
-        height: 450px;
+        min-height: 220px;
+    }
+    
+    .popular-categories .header {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .popular-categories {
+        padding: 1.5rem 1rem;
+    }
+
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .category {
+        min-height: 200px;
+    }
+
+    .category p {
+        font-size: 1.25rem;
+        padding: 0.75rem;
+    }
+    
+    .popular-categories .header {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .categories {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 0;
+    }
+    
+    .category {
+        min-height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .category p {
+        font-size: 1.2rem;
+    }
+    
+    .popular-categories .header {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
 }
