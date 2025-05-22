@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { productService } from "../../api/services/productService";
 import GalleryCard from "./GalleryCard";
+import SEO from "../../components/SEO/SEO";
 
 const Gallery = () => {
     const [loading, setLoading] = useState(true);
@@ -29,18 +30,25 @@ const Gallery = () => {
     if(error) return <div>Error: {error}</div>;
 
     return (
-        <div className="gallery-container">
-            <Breadcrumbs/>
-            <h1>Galerija Radova</h1>
-            <div className="gallery-grid">
-                {galleryItems.map(item => (
-                    <GalleryCard 
-                        key={item.id} 
-                        item={item}
-                    />
-                ))}
+        <>
+            <SEO
+                title="Galerija"
+                description="Pogledajte našu galeriju epoksi stolova i ostalih proizvoda. Inspirišite se našim najlepšim radovima."
+                canonical="https://epoxique.rs/gallery"
+            />
+            <div className="gallery-container">
+                <Breadcrumbs/>
+                <h1>Galerija Radova</h1>
+                <div className="gallery-grid">
+                    {galleryItems.map(item => (
+                        <GalleryCard 
+                            key={item.id} 
+                            item={item}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -6,6 +6,7 @@ import { categoryService } from '../../api/services/categoryService';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import Image from '../../components/Image/Image';
+import SEO from '../../components/SEO/SEO';
 
 const Collection = () => {
     const { loading, error, data: categories } = useApi(categoryService.getAllCategories);
@@ -17,6 +18,11 @@ const Collection = () => {
 
     return (
         <>
+        <SEO
+            title="Kolekcija"
+            description="Pregledajte našu kolekciju ručno izrađenih epoxy stolova. Pronađite jedinstvene dizajne po Vašem ukusu."
+            canonical="https://epoxique.rs/collection"
+        />
         <Breadcrumbs />
         <div className="collection-container">
             

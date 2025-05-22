@@ -126,13 +126,13 @@ const Checkout = () => {
                                 <button className="remove-item" onClick={() => removeFromCart(item.id)}>
                                     Izbaci iz korpe
                                 </button>
-                                <div className="cart-summary">
-                                    <span>Ukupna cena: </span>
-                                    <span>${total.toFixed(2)}</span>  
-                                </div>
                             </div>
                         </div>
                     ))}
+                    <div className="cart-summary">
+                        <span>Ukupna cena: </span>
+                        <span>${total.toFixed(2)}</span>  
+                    </div>
                 </div>
 
                 <div className='customer-info'>
@@ -179,6 +179,7 @@ const Checkout = () => {
                         onChange={(e) => setCustomerInfo({...customerInfo, postalCode: e.target.value})}
                         required
                     />
+                    
                 </div>
                 
                 <div className="terms-section">

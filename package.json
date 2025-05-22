@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react-helmet-async": "^2.0.5"
+  },
+  "devDependencies": {
+    "sitemap-generator": "^8.5.1"
+  }
+}
