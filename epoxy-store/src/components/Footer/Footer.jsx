@@ -19,7 +19,7 @@ function Footer() {
                     <h3>Kontakt</h3>
                     <ul>
                         <li><a href="mailto:info@epoxystolovi.rs">info@epoxystolovi.rs</a></li>
-                        <li><a href="tel:+381601234567">+381 60 123 4567</a></li>
+                        <li><a href="tel:+381601234567">+381 69 312 213</a></li>
                         <li>Pirot, Srbija</li>
                     </ul>
                 </div>
@@ -28,11 +28,11 @@ function Footer() {
                     <h3>Društvene mreže</h3>
                     <div className="social-links">
                         <a href="https://www.instagram.com/luka_vlatkovic/" target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-instagram">📸</i>
+                            <i className="ri-instagram-line"></i>
                             <span>Instagram</span>
                         </a>
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-facebook-f">👍</i>
+                            <i className="ri-facebook-circle-fill"></i>
                             <span>Facebook</span>
                         </a>
                     </div>

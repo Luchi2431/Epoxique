@@ -36,8 +36,8 @@ const Gallery = () => {
                 description="Pogledajte našu galeriju epoksi stolova i ostalih proizvoda. Inspirišite se našim najlepšim radovima."
                 canonical="https://epoxique.rs/gallery"
             />
+            <Breadcrumbs/>
             <div className="gallery-container">
-                <Breadcrumbs/>
                 <h1>Galerija Radova</h1>
                 <div className="gallery-grid">
                     {galleryItems.map(item => (

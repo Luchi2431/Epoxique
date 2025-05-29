@@ -82,7 +82,7 @@ const ProductDetails = () => {
   if (loading) return <LoadingSpinner />;
   if (error) return <div>Greška: {error}</div>;
   if (!product) return <div>Proizvod nije pronadjen</div>;
-  if(product.status !== 'available') return <div>Ovaj proizvod nije dostupan</div>
+  if(product.status !== 'available' && product.status !== 'gallery') return <div>Ovaj proizvod nije dostupan</div>
 
   const dimensionOptions = Array.isArray(product.dimensions) ? product.dimensions : [product.dimensions];
 
@@ -103,7 +103,7 @@ const ProductDetails = () => {
             <Image 
               src={product.images?.[selectedImage]?.image_url} 
               alt={product.name} 
-              size="medium" 
+              size="large" 
               className="main-image"
             />
             <div className="image-overlay">
@@ -140,6 +140,11 @@ const ProductDetails = () => {
             <ul>
               <li><b>Dimenzije:</b> {product.dimensions.length}x{product.dimensions.width}x{product.dimensions.height}cm</li>
             </ul>
+          </div>
+          <div className="product-info">
+            <h2>Dodatne informacije:</h2>
+            <p>Noge stola možemo prilagoditi prema vašim željama - izaberite oblik, boju i materijal!</p>
+
           </div>
           {!isFromGallery && (
             <button className="add-to-cart-button" onClick={handleAddToCart}>
