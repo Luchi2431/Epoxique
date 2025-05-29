@@ -110,13 +110,14 @@
     background-color: #333;
   }
   
-  .product-description, .product-specs {
+  .product-description, .product-specs, .product-info {
     padding-top: 20px;
     border-top: 1px solid #ddd;
   }
   
   .product-description h2,
-  .product-specs h2 {
+  .product-specs h2,
+  .product-info h2 {
     font-size: 1.2rem;
     margin-bottom: 10px;
   }

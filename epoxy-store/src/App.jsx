@@ -31,7 +31,7 @@ const AppContent = () => {
   const { notification, closeNotification } = useContext(CartContext);
 
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true}}>
       <ScrollToTop />
       <Navbar/>
       <CartNotification 
