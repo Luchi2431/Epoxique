@@ -1,13 +1,13 @@
-const db = require('../config/db');
+const pool = require('../config/db');
 
 exports.createOrder = async(req, res) =>  {
     const { customerInfo, items, totalAmount} = req.body;
 
     try {
-        await db.query('BEGIN');
+        await pool.query('BEGIN');
 
         //Create order with separate columns
-        const orderResult = await db.query(
+        const orderResult = await pool.query(
             `INSERT INTO orders (
                 total_amount,
                 shipping_address,
@@ -34,7 +34,7 @@ exports.createOrder = async(req, res) =>  {
 
         //CREATE order items
         for(const item of items) {
-            await db.query(
+            await pool.query(
                 `INSERT INTO order_items (order_id, product_id, quantity, price)
                  VALUES ($1, $2, $3, $4)`,
                  [orderId, item.id, item.quantity, item.price]
@@ -42,10 +42,10 @@ exports.createOrder = async(req, res) =>  {
         }
 
         for(const item of items) {
-            await db.query('UPDATE products SET status = $1 WHERE id = $2',['gallery',item.id]);
+            await pool.query('UPDATE products SET status = $1 WHERE id = $2',['gallery',item.id]);
         }
 
-        await db.query('COMMIT');
+        await pool.query('COMMIT');
 
         res.status(201).json({
             success: true,
@@ -54,7 +54,7 @@ exports.createOrder = async(req, res) =>  {
         });
 
     }catch(error) {
-        await db.query('ROLLBACK');
+        await pool.query('ROLLBACK');
         console.error('Error creating order:', error);
         res.status(500).json({ 
             error: 'Failed to create order',

@@ -35,19 +35,23 @@ const CollectionItems = () => {
     if (loading) return <LoadingSpinner />;
     if (error === 'no-products') {
         return (
+            <>
+            <Breadcrumbs/>
             <div className='collection-container'>
-                <Breadcrumbs/>
+                
                 <div className='no-products-message'>
                     <h1>{categoryName || 'Kolekcija'}</h1>
                     <p>Trenutno nema dostupnih proizvoda u ovoj kolekciji</p>
                 </div>
             </div>
+            </>
         );
     }
 
     return (
+        <>
+        <Breadcrumbs />
         <div className="collection-container">
-            <Breadcrumbs />
             <h1>{categoryName || 'Kolekcija'}</h1>
             <div className="products-grid">
                 {products.map((product) => (
@@ -58,6 +62,7 @@ const CollectionItems = () => {
                 ))}
             </div>
         </div>
+        </>
     );
 };
 
