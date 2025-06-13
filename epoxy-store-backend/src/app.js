@@ -5,6 +5,7 @@ const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const errorHandler = require('./middleware/errorHandler');
+require('dotenv').config();
 
 const app = express();
 

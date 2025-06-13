@@ -19,7 +19,8 @@ const Breadcrumbs = () => {
         'core': 'Materijali',
         'product': 'Proizvod',
         'checkout': 'Plaćanje',
-        'tableconfigurator': 'Narudzbina po meri'
+        'tableconfigurator': 'Narudzbina po meri',
+        'gallery' : 'Galerija'
     };
 
     return (
