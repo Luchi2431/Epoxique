@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -8,21 +7,11 @@ const orderRoutes = require("./routes/orderRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const errorHandler = require("./middleware/errorHandler");
 require("dotenv").config();
-=======
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const productRoutes = require('./routes/productRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
-const orderRoutes = require('./routes/orderRoutes');
-const errorHandler = require('./middleware/errorHandler');
-require('dotenv').config();
->>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
 
 const app = express();
 
 // Middlewares
-<<<<<<< HEAD
+
 app.use(
   cors({
     origin: [
@@ -47,36 +36,34 @@ app.use("/api/products", productRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin", adminRoutes);
-=======
-app.use(cors({
+
+app.use(
+  cors({
     origin: [
-        'https://www.epoxique.rs',
-        'https://api.epoxique.rs',
-        'http://localhost:5173',
-        'https://epoxique.rs',
+      "https://www.epoxique.rs",
+      "https://api.epoxique.rs",
+      "http://localhost:5173",
+      "https://epoxique.rs",
     ],
     credentials: true,
-    methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-    allowedHeaders: ['Content-Type','Authorization']
-}));
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
-app.use('/api', express.static(path.join(__dirname, '../public/images/products')));
+app.use(
+  "/api",
+  express.static(path.join(__dirname, "../public/images/products"))
+);
 
 // Routes
-app.use('/api/products', productRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/orders', orderRoutes);
->>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
+app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Error handling
 app.use(errorHandler);
 
-<<<<<<< HEAD
 const server = app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
-=======
-const server = app.listen(process.env.PORT,() => {
-    console.log(`Server running on port ${process.env.PORT}`);
-});
->>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
