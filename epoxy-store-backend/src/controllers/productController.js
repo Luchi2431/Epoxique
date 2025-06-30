@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const pool = require("../config/db");
 
 const productController = {
@@ -51,6 +52,59 @@ const productController = {
       } = req.body;
 
       const query = `
+=======
+const pool = require('../config/db');
+
+const productController = {
+    //Get all products
+    getAllProducts: async(req,res) => {
+        try {
+            const result = await pool.query(`SELECT * FROM products WHERE status='available'`);
+            res.json(result.rows);
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+    //Get single product
+    getSingleProduct: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameters
+            const productQuery = 'SELECT * FROM products WHERE id = $1'; //Parameterized query to prevent SQL injection
+            const productResult = await pool.query(productQuery,[id]);
+
+            if(productResult.rows.length === 0) {
+                return res.status(404).json({message: 'Product not found'});
+            }
+
+            const imagesQuery = 'SELECT * FROM product_images WHERE product_id = $1 ORDER BY sort_order';
+            const imagesResult = await pool.query(imagesQuery,[id]);
+            
+            const product = {
+                ...productResult.rows[0],
+                images: imagesResult.rows || []
+            };
+            res.json(product);
+
+        }catch(err) {
+            console.error('Error:', err);
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    createProduct: async(req,res) => {
+        try {
+            const { 
+                name,
+                description,
+                price,
+                stock,
+                category_id,
+                image_url,
+                dimensions
+            } = req.body;
+
+            const query = `
+>>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
                 INSERT INTO products
                  (
                     name,
@@ -63,6 +117,7 @@ const productController = {
                 )
                  VALUES ($1, $2, $3, $4, $5, $6, $7)
                  RETURNING *`;
+<<<<<<< HEAD
 
       const values = [
         name,
@@ -111,6 +166,59 @@ const productController = {
       } = req.body;
 
       const query = `
+=======
+            
+            const values = [
+                name,
+                description,
+                price,
+                stock || 0,
+                category_id,
+                image_url,
+                dimensions
+            ];
+
+            const result = await pool.query(query,values);
+            res.status(201).json(result.rows[0]); //Return the created product
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    deleteProduct: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameters
+            const query = 'DELETE FROM products WHERE id = $1 RETURNING *';  //Parameterized query to prevent SQL injection
+            const result = await pool.query(query,[id]);
+
+            if(result.rows.length === 0) {
+                result.status(404).json({message: 'Product not found'});
+            }
+
+            res.status(201).json({message: 'Product deleted successfully'}); //Return the first product found
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+
+    },
+
+    updateProduct: async(req,res) => {
+        try {
+            const {id} = req.params; //Get id from request parameters
+            const { 
+                name,
+                description,
+                price,
+                stock,
+                category_id,
+                image_url,
+                dimensions
+            } = req.body;
+
+            const query = `
+>>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
                 UPDATE products
                  SET 
                     name = COALESCE($1,name),
@@ -122,6 +230,7 @@ const productController = {
                     dimensions = COALESCE($7, dimensions)
                  WHERE id = $8
                  RETURNING *`;
+<<<<<<< HEAD
 
       const values = [
         name,
@@ -160,6 +269,45 @@ const productController = {
   getGalleryProducts: async (req, res) => {
     try {
       const query = `
+=======
+            
+            const values = [
+                name,
+                description,
+                price,
+                stock || 0,
+                category_id,
+                image_url,
+                dimensions,
+                id
+            ];
+
+            const result = await pool.query(query,values);
+
+            if(result.rows.length === 0) {
+                return res.status(404).json({message: 'Product not found'});
+            }
+
+            res.status(200).json(result.rows[0]); //Return the created product
+
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    getHighlightedProducts: async(req,res) => {
+        try {
+            const result = await pool.query(`SELECT * FROM products WHERE status='available' ORDER BY RANDOM() LIMIT 4`);
+            res.json(result.rows);
+        }catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    },
+
+    getGalleryProducts: async(req,res) => {
+        try {
+            const query = `
+>>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
                 WITH product_first_image AS (
                     SELECT DISTINCT ON (product_id) 
                         product_id, 
@@ -174,6 +322,7 @@ const productController = {
                 LEFT JOIN product_first_image pfi ON p.id = pfi.product_id
                 WHERE p.status = 'gallery'
                 ORDER BY p.created_at DESC`;
+<<<<<<< HEAD
       const result = await pool.query(query);
       res.json(result.rows);
     } catch (err) {
@@ -183,3 +332,15 @@ const productController = {
 };
 
 module.exports = productController;
+=======
+            const result = await pool.query(query);
+            res.json(result.rows);
+        } catch(err) {
+            res.status(500).json({error: err.message});
+        }
+    }
+
+};
+
+module.exports = productController;
+>>>>>>> 01607500b83e5b8085078252fd43589b52fa099e
