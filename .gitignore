@@ -1,0 +1,19 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Node modules
+/node_modules
+/epoxy-store/node_modules
+/epoxy-store-backend/node_modules
+
+# macOS
+.DS_Store
+
+# Build output
+/dist
+/epoxy-store/dist
+
+# VSCode
+.vscode/ 

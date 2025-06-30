@@ -7,7 +7,8 @@ export const useApi = (apiFunc) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
+            try 
+            {
                 const result = await apiFunc();
                 setData(result);
             } catch (err) {
