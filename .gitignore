@@ -2,6 +2,10 @@
 .env
 .env.*
 !.env.example
+epoxy-store/.env.*
+epoxy-store.env
+epoxy-store-backend/.env
+epoxy-store-backend/.env.*
 
 # Node modules
 /node_modules
@@ -14,6 +18,10 @@
 # Build output
 /dist
 /epoxy-store/dist
+build/
+
 
 # VSCode
 .vscode/ 
+
+
