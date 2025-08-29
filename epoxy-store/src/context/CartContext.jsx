@@ -12,7 +12,7 @@ const cartActions = {
 const cartReducer = (state, action) => {
   let newState;
   switch (action.type) {
-    case ADD_TO_CART:
+    case cartActions.ADD_TO_CART:
       //Check if item already exists in cart
       const existingItem = state.find((item) => item.id === action.payload.id);
       if (existingItem) {
@@ -25,16 +25,16 @@ const cartReducer = (state, action) => {
         return newState;
       }
 
-    case REMOVE_FROM_CART:
+    case cartActions.REMOVE_FROM_CART:
       newState = state.filter((item) => item.id !== action.payload);
       localStorage.setItem("cart", JSON.stringify(newState));
       return newState;
 
-    case CLEAR_CART:
+    case cartActions.CLEAR_CART:
       localStorage.removeItem("cart");
       return [];
 
-    case INITIALIZE_CART:
+    case cartActions.INITIALIZE_CART:
       return action.payload;
 
     default:
@@ -60,7 +60,7 @@ export const CartProvider = ({ children }) => {
     dispatch(action);
 
     // If an item is added to cart, show the notification
-    if (action.type === ADD_TO_CART) {
+    if (action.type === cartActions.ADD_TO_CART) {
       setNotification({
         visible: true,
         productName: action.payload.name,
